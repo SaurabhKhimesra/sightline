@@ -1,0 +1,28 @@
+# colcon
+build/
+install/
+log/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# runs: pictures, bags, exports and videos are regenerated, the numbers are kept
+results/ros2/*
+!results/ros2/stage1/
+results/ros2/stage1/*
+!results/ros2/stage1/*.yaml
+!results/ros2/stage1/parity/
+results/ros2/stage1/parity/*
+!results/ros2/stage1/parity/*.yaml
+results/**/*.mp4
+results/**/*.npz
+results/**/*.pkl
+results/**/*.mkv
+results/gate5_probe/
+
+# local
+CLAUDE.md
+.claude/

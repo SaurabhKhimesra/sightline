@@ -1,0 +1,29 @@
+date: '2026-09-18'
+note: 'cells the arm or tool can occupy, and which of them the eyes camera cannot
+  see past the cell furniture. The worker is not in this test: this is the fixed blind
+  zone, not the shadow a person casts.'
+voxel_m: 0.05
+joint_samples: 6000
+poses_clear_of_the_cell: 1266
+reachable_cells: 33309
+reachable_litres: 4163.6
+hidden_cells: 12136
+hidden_pct_of_reachable: 36.43
+hidden_by:
+  bench: 9806
+  rack: 52
+  props: 1355
+  jig: 285
+  part_cover: 245
+  part_base: 113
+  robot_mount: 280
+hidden_extent_m:
+  x:
+  - -1.075
+  - 0.775
+  y:
+  - -0.425
+  - 1.325
+  z:
+  - 0.225
+  - 2.175

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>sightline_sim</name>
+  <version>0.1.0</version>
+  <description>The cell in MuJoCo: the station, the worker and his cycle, the cameras with their noise, the judge that scores the two rules from the simulator's own state, the validation gates, and the export to Gazebo Sim.</description>
+  <maintainer email="learningkhimesra@gmail.com">Saurabh Khimesra</maintainer>
+  <license>MIT</license>
+
+  <depend>python3-numpy</depend>
+  <depend>python3-yaml</depend>
+  <depend>sightline_planner</depend>
+
+
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

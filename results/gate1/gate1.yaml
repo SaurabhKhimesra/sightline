@@ -1,0 +1,392 @@
+date: '2026-09-18'
+note: gate 1, station. One worker per pose, robot parked unless stated.
+heights_m:
+  worker_stature: 1.75
+  elbow: 1.1928
+  worktop: 1.1178
+  eyes_camera: 3.598
+  eyes_pitch_deg: 47.6
+camera_coverage_pct:
+  both hands on the cover:
+    reach_err_mm:
+      left_err_m: 0.01
+      right_err_m: 0.01
+    seen_pct:
+      hands: 20.1
+      arms: 45.9
+      head: 19.2
+      torso: 34.0
+    hands:
+      left:
+        seen_pct: 18.9
+        points: 201
+        hidden_by_own_body: 163
+        hidden_by_station: 0
+        out_of_frame: 0
+      right:
+        seen_pct: 21.4
+        points: 201
+        hidden_by_own_body: 158
+        hidden_by_station: 0
+        out_of_frame: 0
+  left hand on the cover:
+    reach_err_mm:
+      left_err_m: 0.01
+      right_err_m: 0.0
+    seen_pct:
+      hands: 24.6
+      arms: 43.5
+      head: 23.3
+      torso: 34.7
+    hands:
+      left:
+        seen_pct: 25.9
+        points: 201
+        hidden_by_own_body: 149
+        hidden_by_station: 0
+        out_of_frame: 0
+      right:
+        seen_pct: 23.4
+        points: 201
+        hidden_by_own_body: 153
+        hidden_by_station: 1
+        out_of_frame: 0
+  hand beside the next hole:
+    reach_err_mm:
+      left_err_m: 0.01
+      right_err_m: 0.0
+    seen_pct:
+      hands: 28.1
+      arms: 41.2
+      head: 23.3
+      torso: 34.7
+    hands:
+      left:
+        seen_pct: 32.8
+        points: 201
+        hidden_by_own_body: 135
+        hidden_by_station: 0
+        out_of_frame: 0
+      right:
+        seen_pct: 23.4
+        points: 201
+        hidden_by_own_body: 153
+        hidden_by_station: 1
+        out_of_frame: 0
+  reaching across the jig:
+    reach_err_mm:
+      left_err_m: 0.0
+      right_err_m: 0.0
+    seen_pct:
+      hands: 27.6
+      arms: 35.3
+      head: 24.7
+      torso: 35.3
+    hands:
+      left:
+        seen_pct: 32.3
+        points: 201
+        hidden_by_own_body: 135
+        hidden_by_station: 1
+        out_of_frame: 0
+      right:
+        seen_pct: 22.9
+        points: 201
+        hidden_by_own_body: 153
+        hidden_by_station: 2
+        out_of_frame: 0
+  leaning in to look:
+    reach_err_mm:
+      left_err_m: 0.01
+      right_err_m: 0.01
+    seen_pct:
+      hands: 6.0
+      arms: 42.9
+      head: 20.5
+      torso: 33.3
+    hands:
+      left:
+        seen_pct: 7.0
+        points: 201
+        hidden_by_own_body: 104
+        hidden_by_station: 83
+        out_of_frame: 0
+      right:
+        seen_pct: 5.0
+        points: 201
+        hidden_by_own_body: 108
+        hidden_by_station: 83
+        out_of_frame: 0
+  taking a part from the rack:
+    reach_err_mm:
+      left_err_m: 1229.37
+      right_err_m: 0.0
+    seen_pct:
+      hands: 30.8
+      arms: 32.9
+      head: 20.5
+      torso: 36.0
+    hands:
+      left:
+        seen_pct: 42.8
+        points: 201
+        hidden_by_own_body: 115
+        hidden_by_station: 0
+        out_of_frame: 0
+      right:
+        seen_pct: 18.9
+        points: 201
+        hidden_by_own_body: 139
+        hidden_by_station: 24
+        out_of_frame: 0
+  putting a box in the tray:
+    reach_err_mm:
+      left_err_m: 432.85
+      right_err_m: 0.0
+    seen_pct:
+      hands: 11.4
+      arms: 32.4
+      head: 24.0
+      torso: 35.3
+    hands:
+      left:
+        seen_pct: 11.4
+        points: 201
+        hidden_by_own_body: 173
+        hidden_by_station: 5
+        out_of_frame: 0
+      right:
+        seen_pct: 11.4
+        points: 201
+        hidden_by_own_body: 7
+        hidden_by_station: 171
+        out_of_frame: 0
+  clipping blocks in the prep area:
+    reach_err_mm:
+      left_err_m: 0.01
+      right_err_m: 0.01
+    seen_pct:
+      hands: 22.6
+      arms: 35.3
+      head: 16.4
+      torso: 36.0
+    hands:
+      left:
+        seen_pct: 25.9
+        points: 201
+        hidden_by_own_body: 149
+        hidden_by_station: 0
+        out_of_frame: 0
+      right:
+        seen_pct: 19.4
+        points: 201
+        hidden_by_own_body: 162
+        hidden_by_station: 0
+        out_of_frame: 0
+park_pose:
+  tip_x: -0.45
+  tip_y: 0.33
+  tip_above_worktop: 0.3
+  turn_deg: 0
+  worst_worker_blocked_pct: 0.0
+  joints_rad:
+  - 4.3596
+  - 4.2553
+  - -1.6279
+  - -5.7691
+  - 3.4944
+  - 3.1416
+robot_blocking_pct_at_one_hole:
+  both hands on the cover: 4.26
+  left hand on the cover: 0.0
+  hand beside the next hole: 15.21
+  reaching across the jig: 7.71
+  leaning in to look: 0.0
+  taking a part from the rack: 0.0
+  putting a box in the tray: 0.0
+  clipping blocks in the prep area: 0.0
+reach_cover:
+  cover_hole_1:
+    turn_angles_tested: 24
+    reachable: 24
+    clear_of_station: 24
+    clear_angles_deg:
+    - 0
+    - 15
+    - 30
+    - 45
+    - 60
+    - 75
+    - 90
+    - 105
+    - 120
+    - 135
+    - 150
+    - 165
+    - 180
+    - 195
+    - 210
+    - 225
+    - 240
+    - 255
+    - 270
+    - 285
+    - 300
+    - 315
+    - 330
+    - 345
+  cover_hole_2:
+    turn_angles_tested: 24
+    reachable: 20
+    clear_of_station: 20
+    clear_angles_deg:
+    - 15
+    - 30
+    - 45
+    - 60
+    - 75
+    - 90
+    - 105
+    - 120
+    - 135
+    - 150
+    - 165
+    - 180
+    - 195
+    - 210
+    - 225
+    - 240
+    - 255
+    - 270
+    - 285
+    - 300
+  cover_hole_3:
+    turn_angles_tested: 24
+    reachable: 24
+    clear_of_station: 24
+    clear_angles_deg:
+    - 0
+    - 15
+    - 30
+    - 45
+    - 60
+    - 75
+    - 90
+    - 105
+    - 120
+    - 135
+    - 150
+    - 165
+    - 180
+    - 195
+    - 210
+    - 225
+    - 240
+    - 255
+    - 270
+    - 285
+    - 300
+    - 315
+    - 330
+    - 345
+  cover_hole_4:
+    turn_angles_tested: 24
+    reachable: 20
+    clear_of_station: 20
+    clear_angles_deg:
+    - 60
+    - 75
+    - 90
+    - 105
+    - 120
+    - 135
+    - 150
+    - 165
+    - 180
+    - 195
+    - 210
+    - 225
+    - 240
+    - 255
+    - 270
+    - 285
+    - 300
+    - 315
+    - 330
+    - 345
+reach_open_box:
+  rail_hole_1:
+    turn_angles_tested: 24
+    reachable: 23
+    clear_of_station: 17
+    clear_angles_deg:
+    - 0
+    - 15
+    - 30
+    - 90
+    - 105
+    - 120
+    - 135
+    - 150
+    - 165
+    - 180
+    - 195
+    - 210
+    - 225
+    - 240
+    - 255
+    - 270
+    - 330
+  rail_hole_2:
+    turn_angles_tested: 24
+    reachable: 23
+    clear_of_station: 17
+    clear_angles_deg:
+    - 0
+    - 30
+    - 45
+    - 60
+    - 75
+    - 90
+    - 150
+    - 165
+    - 180
+    - 195
+    - 210
+    - 270
+    - 285
+    - 300
+    - 315
+    - 330
+    - 345
+  feeder_pick:
+    turn_angles_tested: 24
+    reachable: 24
+    clear_of_station: 24
+    clear_angles_deg:
+    - 0
+    - 15
+    - 30
+    - 45
+    - 60
+    - 75
+    - 90
+    - 105
+    - 120
+    - 135
+    - 150
+    - 165
+    - 180
+    - 195
+    - 210
+    - 225
+    - 240
+    - 255
+    - 270
+    - 285
+    - 300
+    - 315
+    - 330
+    - 345
+ray_stride: 5
+robot_block_stride: 9

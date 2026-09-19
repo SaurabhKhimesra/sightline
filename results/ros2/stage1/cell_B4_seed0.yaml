@@ -1,0 +1,55 @@
+stage: 1
+variant: B4
+seed: 0
+date: '2026-09-19'
+episode_s: 80.89
+worker_cycle_s: 80.89
+wall_time_s: 488.9
+real_time_factor: 0.165
+ticks: 8090
+command_timeouts: 0
+wait_for_command_ms_median: 2.87
+wait_for_command_ms_p99: 170.09
+screws_driven: 6
+held_by_rules_s: 3.43
+stepped_back_s: 1.22
+asked_worker_to_move: []
+blind_cells_used: 480
+R1:
+  contacts: 0
+  contacts_by_who_moved_in:
+    robot: 0
+    person: 0
+    unknown: 0
+  min_distance_mm: 96.6
+  min_distance_t: 43.74
+  worst_contact_depth_mm: 0.0
+  contact_list: []
+R2:
+  frames: 2023
+  blocked_frames: 0
+  blocked_frames_pct: 0.0
+  blocked_events: 0
+  blocked_events_by_who_moved_in:
+    robot: 0
+    person: 0
+    unknown: 0
+  blocked_events_by_who_moved_in_one_frame_back:
+    robot: 0
+    person: 0
+    unknown: 0
+  blocked_frames_by_who_moved_in:
+    robot: 0
+    person: 0
+    unknown: 0
+  longest_block_s: 0.0
+  worst_blocked_pixels: 0
+  event_list: []
+worker:
+  peak_hand_speed_m_s:
+    l: 1.577
+    r: 1.504
+  peak_hand_accel_m_s2:
+    l: 3.7
+    r: 4.1
+fps: 25.0

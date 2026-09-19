@@ -1,0 +1,409 @@
+gate: 3
+variant: B0
+seed: 2
+date: '2026-09-18'
+note: visual servoing, no avoidance. Robot and worker both played back kinematically,
+  so the robot tracks its commands exactly.
+episode_s: 44.59
+worker_cycle_s: 44.59
+wall_time_s: 542.4
+planner:
+  screws_driven: 3
+  screws_total: 6
+  turn_angles_deg:
+    rail_1: 165.0
+    rail_2: 195.0
+    cover_1: 210.0
+    cover_2: 300.0
+    cover_3: 180.0
+    cover_4: 345.0
+  hole_seen_frames: 40
+  hole_missed_frames: 80
+  unreachable: []
+  hole_rejected_corrections: 29
+  hole_error_mm:
+  - 8.54
+  - 8.54
+  - 7.87
+  - 7.87
+  - 7.88
+  - 7.88
+  - 7.52
+  - 7.52
+  - 7.52
+  - 6.92
+  - 6.92
+  - 6.92
+  - 6.37
+  - 6.37
+  - 6.38
+  - 6.38
+  - 5.9
+  - 5.9
+  - 6.07
+  - 5.28
+  - 5.28
+  - 5.28
+  - 5.29
+  - 4.71
+  - 4.72
+  - 4.72
+  - 4.16
+  - 4.16
+  - 4.16
+  - 3.54
+  - 3.61
+  - 3.72
+  - 3.79
+  - 2.54
+  - 2.58
+  - 2.62
+  - 1.47
+  - 1.49
+  - 1.51
+  - 1.52
+  state_log:
+  - - 15.27
+    - to_feeder
+    - rail_1
+  - - 18.63
+    - pick
+    - rail_1
+  - - 19.87
+    - to_hole
+    - rail_1
+  - - 21.84
+    - servo
+    - rail_1
+  - - 22.24
+    - descend
+    - rail_1
+  - - 23.78
+    - drive
+    - rail_1
+  - - 24.98
+    - retract
+    - rail_1
+  - - 26.41
+    - done
+    - rail_1
+  - - 26.42
+    - to_feeder
+    - rail_2
+  - - 28.44
+    - pick
+    - rail_2
+  - - 29.67
+    - to_hole
+    - rail_2
+  - - 31.39
+    - servo
+    - rail_2
+  - - 31.79
+    - descend
+    - rail_2
+  - - 33.33
+    - drive
+    - rail_2
+  - - 34.53
+    - retract
+    - rail_2
+  - - 35.95
+    - done
+    - rail_2
+  - - 35.96
+    - to_feeder
+    - cover_1
+  - - 37.73
+    - pick
+    - cover_1
+  - - 38.95
+    - to_hole
+    - cover_1
+  - - 40.87
+    - servo
+    - cover_1
+  - - 41.27
+    - descend
+    - cover_1
+  - - 42.77
+    - drive
+    - cover_1
+  - - 43.98
+    - retract
+    - cover_1
+robot_idle_s: 18.9
+R1:
+  contacts: 94
+  contacts_by_who_moved_in:
+    robot: 34
+    person: 60
+    unknown: 0
+  min_distance_mm: -124.8
+  min_distance_t: 40.57
+  worst_contact_depth_mm: 124.8
+  contact_list:
+  - t: 20.202
+    human_body: worker/head
+    depth_mm: 106.7
+    who_moved_in: robot
+    person_speed_m_s: 0.097
+  - t: 20.218
+    human_body: worker/head
+    depth_mm: 98.9
+    who_moved_in: robot
+    person_speed_m_s: 0.098
+  - t: 20.308
+    human_body: worker/head
+    depth_mm: 63.7
+    who_moved_in: robot
+    person_speed_m_s: 0.103
+  - t: 20.38
+    human_body: worker/head
+    depth_mm: 19.8
+    who_moved_in: robot
+    person_speed_m_s: 0.106
+  - t: 20.474
+    human_body: worker/head
+    depth_mm: 46.1
+    who_moved_in: robot
+    person_speed_m_s: 0.11
+  - t: 20.528
+    human_body: worker/head
+    depth_mm: 69.1
+    who_moved_in: robot
+    person_speed_m_s: 0.111
+  - t: 23.116
+    human_body: worker/upperneck
+    depth_mm: 42.5
+    who_moved_in: person
+    person_speed_m_s: 0.514
+  - t: 23.132
+    human_body: worker/upperneck
+    depth_mm: 30.7
+    who_moved_in: person
+    person_speed_m_s: 0.537
+  - t: 23.178
+    human_body: worker/lowerneck
+    depth_mm: 55.1
+    who_moved_in: person
+    person_speed_m_s: 0.601
+  - t: 23.218
+    human_body: worker/lowerneck
+    depth_mm: 35.7
+    who_moved_in: person
+    person_speed_m_s: 0.655
+  - t: 23.256
+    human_body: worker/rthumb
+    depth_mm: 5.3
+    who_moved_in: person
+    person_speed_m_s: 0.702
+  - t: 23.276
+    human_body: worker/rclavicle
+    depth_mm: 91.2
+    who_moved_in: person
+    person_speed_m_s: 0.726
+  - t: 23.296
+    human_body: worker/rclavicle
+    depth_mm: 80.2
+    who_moved_in: person
+    person_speed_m_s: 0.749
+  - t: 23.304
+    human_body: worker/lclavicle
+    depth_mm: 5.9
+    who_moved_in: person
+    person_speed_m_s: 0.757
+  - t: 23.306
+    human_body: worker/thorax
+    depth_mm: 55.1
+    who_moved_in: person
+    person_speed_m_s: 0.76
+  - t: 23.314
+    human_body: worker/rclavicle
+    depth_mm: 6.2
+    who_moved_in: person
+    person_speed_m_s: 0.768
+  - t: 23.33
+    human_body: worker/thorax
+    depth_mm: 59.2
+    who_moved_in: person
+    person_speed_m_s: 0.785
+  - t: 23.37
+    human_body: worker/rthumb
+    depth_mm: 68.1
+    who_moved_in: person
+    person_speed_m_s: 0.822
+  - t: 23.38
+    human_body: worker/thorax
+    depth_mm: 27.4
+    who_moved_in: person
+    person_speed_m_s: 0.831
+  - t: 23.39
+    human_body: worker/rclavicle
+    depth_mm: 34.5
+    who_moved_in: person
+    person_speed_m_s: 0.839
+  - t: 23.41
+    human_body: worker/rwrist
+    depth_mm: 19.1
+    who_moved_in: person
+    person_speed_m_s: 0.854
+  - t: 23.414
+    human_body: worker/rfingers
+    depth_mm: 25.2
+    who_moved_in: person
+    person_speed_m_s: 0.857
+  - t: 23.42
+    human_body: worker/rhand
+    depth_mm: 65.0
+    who_moved_in: person
+    person_speed_m_s: 0.861
+  - t: 23.438
+    human_body: worker/rradius
+    depth_mm: 57.5
+    who_moved_in: person
+    person_speed_m_s: 0.873
+  - t: 23.446
+    human_body: worker/rfingers
+    depth_mm: 10.8
+    who_moved_in: person
+    person_speed_m_s: 0.878
+  - t: 23.452
+    human_body: worker/rhumerus
+    depth_mm: 80.6
+    who_moved_in: person
+    person_speed_m_s: 0.881
+  - t: 23.482
+    human_body: worker/rwrist
+    depth_mm: 80.4
+    who_moved_in: person
+    person_speed_m_s: 0.896
+  - t: 23.508
+    human_body: worker/rhumerus
+    depth_mm: 60.3
+    who_moved_in: person
+    person_speed_m_s: 0.907
+  - t: 23.516
+    human_body: worker/rhumerus
+    depth_mm: 63.4
+    who_moved_in: person
+    person_speed_m_s: 0.909
+  - t: 23.536
+    human_body: worker/rfingers
+    depth_mm: 42.1
+    who_moved_in: person
+    person_speed_m_s: 0.914
+  - t: 23.546
+    human_body: worker/rradius
+    depth_mm: 86.2
+    who_moved_in: person
+    person_speed_m_s: 0.916
+  - t: 23.546
+    human_body: worker/rfingers
+    depth_mm: 55.8
+    who_moved_in: person
+    person_speed_m_s: 0.916
+  - t: 23.562
+    human_body: worker/rfingers
+    depth_mm: 56.1
+    who_moved_in: person
+    person_speed_m_s: 0.918
+  - t: 23.584
+    human_body: worker/rfingers
+    depth_mm: 55.2
+    who_moved_in: person
+    person_speed_m_s: 0.92
+  - t: 23.586
+    human_body: worker/rhumerus
+    depth_mm: 5.3
+    who_moved_in: person
+    person_speed_m_s: 0.92
+  - t: 23.608
+    human_body: worker/rhumerus
+    depth_mm: 10.0
+    who_moved_in: person
+    person_speed_m_s: 0.919
+  - t: 23.616
+    human_body: worker/rhumerus
+    depth_mm: 48.3
+    who_moved_in: person
+    person_speed_m_s: 0.918
+  - t: 23.638
+    human_body: worker/rradius
+    depth_mm: 0.6
+    who_moved_in: person
+    person_speed_m_s: 0.914
+  - t: 23.648
+    human_body: worker/rradius
+    depth_mm: 7.3
+    who_moved_in: person
+    person_speed_m_s: 0.912
+  - t: 23.828
+    human_body: worker/rradius
+    depth_mm: 7.3
+    who_moved_in: person
+    person_speed_m_s: 0.805
+R2:
+  frames: 1312
+  blocked_frames: 546
+  blocked_frames_pct: 41.6
+  blocked_events: 6
+  blocked_events_by_who_moved_in:
+    robot: 1
+    person: 5
+    unknown: 0
+  blocked_events_by_who_moved_in_one_frame_back:
+    robot: 3
+    person: 3
+    unknown: 0
+  blocked_frames_by_who_moved_in:
+    robot: 190
+    person: 356
+    unknown: 0
+  longest_block_s: 6.33
+  worst_blocked_pixels: 1128
+  event_list:
+  - t_start: 20.264
+    t_end: 26.588
+    frames: 187
+    worst_pixels: 1128
+    who_moved_in: person
+    who_moved_in_frame: robot
+  - t_start: 27.438
+    t_end: 27.54
+    frames: 4
+    worst_pixels: 14
+    who_moved_in: person
+    who_moved_in_frame: person
+  - t_start: 29.58
+    t_end: 29.58
+    frames: 1
+    worst_pixels: 1
+    who_moved_in: person
+    who_moved_in_frame: person
+  - t_start: 29.92
+    t_end: 36.346
+    frames: 190
+    worst_pixels: 428
+    who_moved_in: robot
+    who_moved_in_frame: robot
+  - t_start: 37.978
+    t_end: 38.114
+    frames: 5
+    worst_pixels: 3
+    who_moved_in: person
+    who_moved_in_frame: person
+  - t_start: 39.202
+    t_end: 44.574
+    frames: 159
+    worst_pixels: 762
+    who_moved_in: person
+    who_moved_in_frame: robot
+worker:
+  peak_hand_speed_m_s:
+    l: 1.21
+    r: 1.277
+  peak_hand_accel_m_s2:
+    l: 4.4
+    r: 4.0
+  worst_hand_push_mm: 68.13

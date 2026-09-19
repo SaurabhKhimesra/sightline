@@ -1,0 +1,156 @@
+date: '2026-09-18'
+aim_point:
+- 0.0
+- -0.06
+- 1.158
+shared_cells: 4336
+behind_points: 2090
+current:
+  cam:
+  - 1.15
+  - -0.9
+  - 3.25
+  pitch_deg: 55.8
+  shared_seen_pct: 84.5
+  behind_seen_pct: 79.4
+ranked:
+- cam:
+  - 1.7
+  - -1.8
+  - 2.9
+  pitch_deg: 35.6
+  shared_seen_pct: 89.2
+  behind_seen_pct: 78.1
+- cam:
+  - 1.7
+  - -1.5
+  - 2.9
+  pitch_deg: 38.0
+  shared_seen_pct: 89.8
+  behind_seen_pct: 76.0
+- cam:
+  - 1.7
+  - -1.5
+  - 3.6
+  pitch_deg: 47.6
+  shared_seen_pct: 86.6
+  behind_seen_pct: 82.0
+- cam:
+  - 1.4
+  - -1.8
+  - 2.9
+  pitch_deg: 38.0
+  shared_seen_pct: 88.2
+  behind_seen_pct: 78.7
+- cam:
+  - 1.4
+  - -1.2
+  - 3.25
+  pitch_deg: 49.2
+  shared_seen_pct: 87.2
+  behind_seen_pct: 79.6
+- cam:
+  - 1.7
+  - -1.8
+  - 3.6
+  pitch_deg: 45.1
+  shared_seen_pct: 86.7
+  behind_seen_pct: 80.1
+- cam:
+  - 1.4
+  - -1.5
+  - 2.9
+  pitch_deg: 40.9
+  shared_seen_pct: 88.8
+  behind_seen_pct: 75.8
+- cam:
+  - 1.15
+  - -1.2
+  - 3.25
+  pitch_deg: 52.3
+  shared_seen_pct: 86.9
+  behind_seen_pct: 79.5
+- cam:
+  - 1.7
+  - -1.2
+  - 2.9
+  pitch_deg: 40.4
+  shared_seen_pct: 89.9
+  behind_seen_pct: 73.5
+- cam:
+  - 0.9
+  - -1.2
+  - 3.25
+  pitch_deg: 55.2
+  shared_seen_pct: 85.9
+  behind_seen_pct: 81.2
+- cam:
+  - 1.7
+  - -1.2
+  - 3.6
+  pitch_deg: 50.0
+  shared_seen_pct: 85.3
+  behind_seen_pct: 82.4
+- cam:
+  - 1.4
+  - -1.2
+  - 2.9
+  pitch_deg: 44.0
+  shared_seen_pct: 89.4
+  behind_seen_pct: 74.1
+- cam:
+  - 1.7
+  - -1.2
+  - 3.25
+  pitch_deg: 45.6
+  shared_seen_pct: 87.8
+  behind_seen_pct: 77.2
+- cam:
+  - 1.7
+  - -1.8
+  - 3.25
+  pitch_deg: 40.7
+  shared_seen_pct: 88.3
+  behind_seen_pct: 76.1
+- cam:
+  - 1.7
+  - -1.5
+  - 3.25
+  pitch_deg: 43.2
+  shared_seen_pct: 87.9
+  behind_seen_pct: 76.7
+- cam:
+  - 1.15
+  - -1.8
+  - 2.9
+  pitch_deg: 39.9
+  shared_seen_pct: 87.5
+  behind_seen_pct: 77.4
+- cam:
+  - 0.9
+  - -0.6
+  - 3.6
+  pitch_deg: 66.7
+  shared_seen_pct: 83.8
+  behind_seen_pct: 84.6
+- cam:
+  - 1.4
+  - -1.5
+  - 3.6
+  pitch_deg: 50.6
+  shared_seen_pct: 85.8
+  behind_seen_pct: 80.4
+- cam:
+  - 0.9
+  - -1.8
+  - 2.9
+  pitch_deg: 41.6
+  shared_seen_pct: 86.4
+  behind_seen_pct: 78.9
+- cam:
+  - 1.15
+  - -1.5
+  - 3.6
+  pitch_deg: 53.0
+  shared_seen_pct: 85.0
+  behind_seen_pct: 81.7

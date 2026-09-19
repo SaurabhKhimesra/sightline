@@ -1,0 +1,10 @@
+# Python packages the nodes and tools need beside ROS 2 Lyrical's own.
+# Install them into the interpreter that runs the ROS 2 nodes (README, "Setup").
+mujoco>=3.3
+dm_control>=1.0.30
+numpy>=2.0
+pyyaml>=6.0
+imageio>=2.34
+imageio-ffmpeg>=0.5
+# Gazebo's MJCF to SDF converter, against the sdformat binding ROS 2 vendors:
+# pip install --no-deps sdformat-mjcf

@@ -1,0 +1,307 @@
+stage: 1
+variant: B4
+seed: 0
+date: '2026-09-19'
+ticks_answered: 8090
+pictures: 2022
+picture_ms_median: 161.1
+picture_ms_max: 510.8
+picture_parts_ms_median:
+  perceive: 138.1
+  grid: 14.9
+  blind: 7.5
+  rviz: 7.0
+guard_ms_median: 1.2
+guard_ms_p99: 7.94
+qp_ms_median: 0.39
+guard_verdicts:
+  brake: 536
+  escape back: 4
+  escape brake: 1
+  escape to park: 327
+  escape to standoff: 7
+  escape up: 3
+  go: 7098
+  slow: 114
+planner_summary:
+  screws_driven: 6
+  screws_total: 6
+  turn_angles_deg:
+    rail_2: 300.0
+    rail_1: 0.0
+    cover_4: 300.0
+    cover_3: 285.0
+    cover_2: 270.0
+    cover_1: 270.0
+  hole_seen_frames: 0
+  hole_missed_frames: 0
+  unreachable: []
+  hole_rejected_corrections: 0
+  yields:
+  - - 28.63
+    - 29.09
+    - rail_1
+  - - 29.61
+    - 30.37
+    - rail_1
+  missed: []
+  hole_error_mm: []
+  state_log:
+  - - 0.0
+    - to_feeder
+    - rail_1
+  - - 2.63
+    - pick
+    - rail_1
+  - - 14.58
+    - to_feeder
+    - rail_1
+  - - 15.1
+    - pick
+    - rail_1
+  - - 17.81
+    - to_feeder
+    - rail_1
+  - - 19.15
+    - pick
+    - rail_1
+  - - 20.83
+    - to_feeder
+    - rail_1
+  - - 22.01
+    - pick
+    - rail_1
+  - - 23.25
+    - to_hole
+    - rail_2
+  - - 24.07
+    - servo
+    - rail_2
+  - - 24.47
+    - descend
+    - rail_2
+  - - 24.98
+    - drive
+    - rail_2
+  - - 26.18
+    - retract
+    - rail_2
+  - - 26.53
+    - done
+    - rail_2
+  - - 26.54
+    - to_feeder
+    - rail_1
+  - - 27.36
+    - pick
+    - rail_1
+  - - 28.63
+    - yield
+    - rail_1
+  - - 29.09
+    - to_hole
+    - rail_1
+  - - 29.61
+    - yield
+    - rail_1
+  - - 30.37
+    - to_hole
+    - rail_1
+  - - 31.37
+    - to_hole
+    - rail_1
+  - - 33.71
+    - servo
+    - rail_1
+  - - 34.11
+    - descend
+    - rail_1
+  - - 34.49
+    - drive
+    - rail_1
+  - - 35.7
+    - retract
+    - rail_1
+  - - 35.97
+    - done
+    - rail_1
+  - - 35.98
+    - to_feeder
+    - cover_1
+  - - 41.37
+    - pick
+    - cover_1
+  - - 42.67
+    - to_feeder
+    - cover_1
+  - - 45.65
+    - pick
+    - cover_1
+  - - 46.89
+    - to_hole
+    - cover_4
+  - - 47.6
+    - servo
+    - cover_4
+  - - 48.0
+    - descend
+    - cover_4
+  - - 48.57
+    - drive
+    - cover_4
+  - - 49.77
+    - retract
+    - cover_4
+  - - 50.15
+    - done
+    - cover_4
+  - - 50.16
+    - to_feeder
+    - cover_2
+  - - 50.87
+    - pick
+    - cover_2
+  - - 52.14
+    - to_hole
+    - cover_3
+  - - 52.97
+    - servo
+    - cover_3
+  - - 53.37
+    - descend
+    - cover_3
+  - - 53.76
+    - drive
+    - cover_3
+  - - 54.96
+    - retract
+    - cover_3
+  - - 55.24
+    - done
+    - cover_3
+  - - 55.25
+    - to_feeder
+    - cover_2
+  - - 56.08
+    - pick
+    - cover_2
+  - - 57.35
+    - to_hole
+    - cover_1
+  - - 57.97
+    - to_hole
+    - cover_2
+  - - 58.56
+    - servo
+    - cover_2
+  - - 58.96
+    - descend
+    - cover_2
+  - - 59.61
+    - drive
+    - cover_2
+  - - 60.81
+    - retract
+    - cover_2
+  - - 61.23
+    - done
+    - cover_2
+  - - 61.24
+    - to_feeder
+    - cover_1
+  - - 62.39
+    - pick
+    - cover_1
+  - - 63.65
+    - to_hole
+    - cover_1
+  - - 64.77
+    - servo
+    - cover_1
+  - - 65.17
+    - descend
+    - cover_1
+  - - 65.6
+    - drive
+    - cover_1
+  - - 66.8
+    - retract
+    - cover_1
+  - - 67.1
+    - done
+    - cover_1
+  choices:
+  - - 23.25
+    - rail_2
+    - 300.0
+    - left the feeder
+  - - 29.09
+    - rail_1
+    - 330.0
+    - clear again
+  - - 30.37
+    - rail_1
+    - 15.0
+    - clear again
+  - - 31.37
+    - rail_1
+    - 0.0
+    - the way closed
+  - - 46.89
+    - cover_4
+    - 300.0
+    - left the feeder
+  - - 52.14
+    - cover_3
+    - 285.0
+    - left the feeder
+  - - 57.35
+    - cover_1
+    - 270.0
+    - left the feeder
+  - - 57.97
+    - cover_2
+    - 270.0
+    - the way closed
+  - - 63.65
+    - cover_1
+    - 270.0
+    - left the feeder
+  options_per_screw:
+    rail_1: 23
+    rail_2: 23
+    cover_1: 24
+    cover_2: 20
+    cover_3: 24
+    cover_4: 20
+  options_view_clear:
+    rail_1: 23
+    rail_2: 22
+    cover_1: 24
+    cover_2: 19
+    cover_3: 24
+    cover_4: 20
+  gave_up: []
+  swaps:
+  - - 31.37
+    - rail_1
+    - the way closed
+  - - 57.97
+    - cover_1
+    - the way closed
+  guard:
+    verdicts:
+      go: 7098
+      brake: 536
+      escape to park: 327
+      slow: 114
+      escape up: 3
+      escape to standoff: 7
+      escape back: 4
+      escape brake: 1
+    ms_median: 1.192
+    ms_p99: 7.932
+    ms_max: 13.834
+    points_on_the_arm: 63
+  feeder_turn_deg: 0.0
+  feeder_arm_behind_jig_m: 0.06

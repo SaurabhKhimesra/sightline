@@ -1,0 +1,2340 @@
+gate: 5
+variant: B4
+seed: 0
+date: '2026-09-18'
+episode_s: 6.0
+worker_cycle_s: 80.89
+wall_time_s: 159.3
+screws_driven: 0
+screws_driven_while_he: []
+screws_missed: []
+held_by_rules_s: 0.0
+stepped_back_s: 0.0
+step_backs: []
+asked_worker_to_move: []
+blind_cells_used: 480
+blind_cells_active_median: 4.0
+motion:
+  cycles: 601
+  rows_median: 24.0
+  rows_max: 24
+  solve_ms_median: 0.42
+  solve_ms_max: 1.28
+  fallbacks: 0
+  planner_min_distance_mm: null
+  planner_min_guard_distance_mm: null
+R1:
+  contacts: 0
+  contacts_by_who_moved_in:
+    robot: 0
+    person: 0
+    unknown: 0
+  min_distance_mm: null
+  min_distance_t: 0.0
+  worst_contact_depth_mm: 0.0
+  contact_list: []
+R2:
+  frames: 151
+  blocked_frames: 0
+  blocked_frames_pct: 0.0
+  blocked_events: 0
+  blocked_events_by_who_moved_in:
+    robot: 0
+    person: 0
+    unknown: 0
+  blocked_events_by_who_moved_in_one_frame_back:
+    robot: 0
+    person: 0
+    unknown: 0
+  blocked_frames_by_who_moved_in:
+    robot: 0
+    person: 0
+    unknown: 0
+  longest_block_s: 0.0
+  worst_blocked_pixels: 0
+  event_list: []
+worker:
+  peak_hand_speed_m_s:
+    l: 1.141
+    r: 0.797
+  peak_hand_accel_m_s2:
+    l: 2.9
+    r: 1.3
+fps: 25.0
+planner_state_log:
+- - 0.0
+  - to_feeder
+  - rail_1
+- - 2.63
+  - pick
+  - rail_1
+motion_trace:
+- t: 0.0
+  state: to_feeder
+  tip:
+  - -0.45
+  - 0.33
+  - 1.418
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 22
+  speed_ratio: 0.0
+- t: 0.05
+  state: to_feeder
+  tip:
+  - -0.452
+  - 0.33
+  - 1.42
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 22
+  speed_ratio: 0.99
+- t: 0.1
+  state: to_feeder
+  tip:
+  - -0.458
+  - 0.332
+  - 1.428
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 22
+  speed_ratio: 0.995
+- t: 0.15
+  state: to_feeder
+  tip:
+  - -0.469
+  - 0.335
+  - 1.442
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 22
+  speed_ratio: 0.997
+- t: 0.2
+  state: to_feeder
+  tip:
+  - -0.483
+  - 0.338
+  - 1.464
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 22
+  speed_ratio: 0.997
+- t: 0.25
+  state: to_feeder
+  tip:
+  - -0.499
+  - 0.342
+  - 1.493
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 19
+  speed_ratio: 1.0
+- t: 0.3
+  state: to_feeder
+  tip:
+  - -0.513
+  - 0.345
+  - 1.527
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 16
+  speed_ratio: 1.0
+- t: 0.35
+  state: to_feeder
+  tip:
+  - -0.525
+  - 0.347
+  - 1.562
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 0.4
+  state: to_feeder
+  tip:
+  - -0.534
+  - 0.347
+  - 1.599
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 0.45
+  state: to_feeder
+  tip:
+  - -0.54
+  - 0.347
+  - 1.638
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 0.5
+  state: to_feeder
+  tip:
+  - -0.542
+  - 0.345
+  - 1.678
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 0.55
+  state: to_feeder
+  tip:
+  - -0.541
+  - 0.342
+  - 1.719
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 0.6
+  state: to_feeder
+  tip:
+  - -0.536
+  - 0.338
+  - 1.76
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 0.65
+  state: to_feeder
+  tip:
+  - -0.527
+  - 0.333
+  - 1.801
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 0.7
+  state: to_feeder
+  tip:
+  - -0.514
+  - 0.327
+  - 1.842
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 0.75
+  state: to_feeder
+  tip:
+  - -0.498
+  - 0.319
+  - 1.883
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 0.8
+  state: to_feeder
+  tip:
+  - -0.477
+  - 0.311
+  - 1.922
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 0.85
+  state: to_feeder
+  tip:
+  - -0.453
+  - 0.301
+  - 1.96
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 0.9
+  state: to_feeder
+  tip:
+  - -0.426
+  - 0.291
+  - 1.996
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 0.95
+  state: to_feeder
+  tip:
+  - -0.394
+  - 0.28
+  - 2.029
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.0
+  state: to_feeder
+  tip:
+  - -0.36
+  - 0.268
+  - 2.06
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.05
+  state: to_feeder
+  tip:
+  - -0.322
+  - 0.255
+  - 2.087
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.1
+  state: to_feeder
+  tip:
+  - -0.282
+  - 0.242
+  - 2.111
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.15
+  state: to_feeder
+  tip:
+  - -0.24
+  - 0.229
+  - 2.132
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.2
+  state: to_feeder
+  tip:
+  - -0.195
+  - 0.215
+  - 2.148
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.25
+  state: to_feeder
+  tip:
+  - -0.149
+  - 0.201
+  - 2.16
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.3
+  state: to_feeder
+  tip:
+  - -0.101
+  - 0.188
+  - 2.168
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.35
+  state: to_feeder
+  tip:
+  - -0.053
+  - 0.174
+  - 2.171
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.4
+  state: to_feeder
+  tip:
+  - -0.004
+  - 0.161
+  - 2.17
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.45
+  state: to_feeder
+  tip:
+  - 0.045
+  - 0.148
+  - 2.163
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.5
+  state: to_feeder
+  tip:
+  - 0.093
+  - 0.136
+  - 2.153
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.55
+  state: to_feeder
+  tip:
+  - 0.14
+  - 0.125
+  - 2.138
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.6
+  state: to_feeder
+  tip:
+  - 0.185
+  - 0.114
+  - 2.118
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.65
+  state: to_feeder
+  tip:
+  - 0.228
+  - 0.104
+  - 2.094
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.7
+  state: to_feeder
+  tip:
+  - 0.269
+  - 0.095
+  - 2.067
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.75
+  state: to_feeder
+  tip:
+  - 0.308
+  - 0.086
+  - 2.035
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.8
+  state: to_feeder
+  tip:
+  - 0.343
+  - 0.079
+  - 2.001
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.85
+  state: to_feeder
+  tip:
+  - 0.374
+  - 0.073
+  - 1.963
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.9
+  state: to_feeder
+  tip:
+  - 0.402
+  - 0.068
+  - 1.922
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 1.95
+  state: to_feeder
+  tip:
+  - 0.426
+  - 0.065
+  - 1.88
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 2.0
+  state: to_feeder
+  tip:
+  - 0.445
+  - 0.062
+  - 1.835
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 2.05
+  state: to_feeder
+  tip:
+  - 0.461
+  - 0.06
+  - 1.79
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 2.1
+  state: to_feeder
+  tip:
+  - 0.471
+  - 0.06
+  - 1.743
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 2.15
+  state: to_feeder
+  tip:
+  - 0.477
+  - 0.06
+  - 1.697
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 2.2
+  state: to_feeder
+  tip:
+  - 0.478
+  - 0.062
+  - 1.65
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 2.25
+  state: to_feeder
+  tip:
+  - 0.475
+  - 0.064
+  - 1.604
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 2.3
+  state: to_feeder
+  tip:
+  - 0.467
+  - 0.067
+  - 1.56
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 15
+  speed_ratio: 1.0
+- t: 2.35
+  state: to_feeder
+  tip:
+  - 0.455
+  - 0.071
+  - 1.517
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 18
+  speed_ratio: 1.0
+- t: 2.4
+  state: to_feeder
+  tip:
+  - 0.439
+  - 0.076
+  - 1.476
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 21
+  speed_ratio: 1.0
+- t: 2.45
+  state: to_feeder
+  tip:
+  - 0.419
+  - 0.081
+  - 1.437
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 22
+  speed_ratio: 1.0
+- t: 2.5
+  state: to_feeder
+  tip:
+  - 0.397
+  - 0.087
+  - 1.404
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 22
+  speed_ratio: 1.008
+- t: 2.55
+  state: to_feeder
+  tip:
+  - 0.379
+  - 0.091
+  - 1.381
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.029
+- t: 2.6
+  state: to_feeder
+  tip:
+  - 0.366
+  - 0.094
+  - 1.366
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.13
+- t: 2.65
+  state: pick
+  tip:
+  - 0.358
+  - 0.095
+  - 1.358
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 0.821
+- t: 2.7
+  state: pick
+  tip:
+  - 0.358
+  - 0.095
+  - 1.354
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 2.75
+  state: pick
+  tip:
+  - 0.358
+  - 0.095
+  - 1.35
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 2.8
+  state: pick
+  tip:
+  - 0.358
+  - 0.095
+  - 1.347
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 2.85
+  state: pick
+  tip:
+  - 0.358
+  - 0.095
+  - 1.344
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 2.9
+  state: pick
+  tip:
+  - 0.358
+  - 0.095
+  - 1.342
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 2.95
+  state: pick
+  tip:
+  - 0.359
+  - 0.095
+  - 1.339
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.0
+  state: pick
+  tip:
+  - 0.359
+  - 0.095
+  - 1.337
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.05
+  state: pick
+  tip:
+  - 0.359
+  - 0.095
+  - 1.335
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.1
+  state: pick
+  tip:
+  - 0.359
+  - 0.095
+  - 1.333
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.15
+  state: pick
+  tip:
+  - 0.359
+  - 0.095
+  - 1.332
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.2
+  state: pick
+  tip:
+  - 0.359
+  - 0.095
+  - 1.33
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.25
+  state: pick
+  tip:
+  - 0.359
+  - 0.095
+  - 1.329
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.3
+  state: pick
+  tip:
+  - 0.359
+  - 0.095
+  - 1.328
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.35
+  state: pick
+  tip:
+  - 0.359
+  - 0.095
+  - 1.327
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.4
+  state: pick
+  tip:
+  - 0.359
+  - 0.095
+  - 1.326
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.45
+  state: pick
+  tip:
+  - 0.359
+  - 0.095
+  - 1.325
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.5
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.324
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.55
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.323
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.6
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.323
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.65
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.322
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.7
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.321
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.75
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.321
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.8
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.32
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.85
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.32
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.9
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.32
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 3.95
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.319
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.0
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.319
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.05
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.319
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.1
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.318
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.15
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.318
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.2
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.318
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.25
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.318
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.3
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.318
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.35
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.318
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.4
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.317
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.45
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.317
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.5
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.317
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.55
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.317
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.6
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.317
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.65
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.317
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.7
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.317
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.75
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.317
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.8
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.317
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.85
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.317
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.9
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 4.95
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.0
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.05
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.1
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.15
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.2
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.25
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.3
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.35
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.4
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.45
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.5
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.55
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.6
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.65
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.7
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.75
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.8
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.85
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.9
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 5.95
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+- t: 6.0
+  state: pick
+  tip:
+  - 0.36
+  - 0.095
+  - 1.316
+  lowest_link_z: 1.136
+  fallback: ''
+  guard: go
+  flagged:
+    grid: 0
+    blind: 0
+    worktop: 0
+    deepest_mm: 0.0
+  rows: 24
+  speed_ratio: 1.001
+B4:
+  person_speed_setting: measured
+  guard:
+    verdicts:
+      go: 601
+    ms_median: 1.372
+    ms_p99: 3.543
+    ms_max: 4.502
+    points_on_the_arm: 63
+  guard_verdicts_by_state:
+    pick go: 338
+    to_feeder go: 263
+  choices: []
+  swaps: []
+  gave_up: []
+  options_per_screw:
+    rail_1: 23
+    rail_2: 23
+    cover_1: 24
+    cover_2: 20
+    cover_3: 24
+    cover_4: 20
+  speed_check:
+    hand_pictures_seen: 238
+    hand_pictures_not_seen: 60
+    grid_minus_true_mean_median_m_s: 0.177
+    grid_minus_true_mean_p5_m_s: -0.175
+    grid_minus_true_mean_p95_m_s: 1.238
+    grid_below_true_peak_pct: 19.7
+    grid_below_true_peak_p95_m_s: 0.213
+    grid_below_true_peak_max_m_s: 0.362
+    remembered_cells_max: 0
+  speed_trace:
+  - - 0.08
+    - .nan
+    - 0.001
+    - 0.012
+    - 0
+  - - 0.16
+    - 0.277
+    - 0.008
+    - 0.042
+    - 0
+  - - 0.28
+    - .nan
+    - 0.056
+    - 0.118
+    - 0
+  - - 0.36
+    - 0.39
+    - 0.103
+    - 0.178
+    - 0
+  - - 0.48
+    - 0.326
+    - 0.195
+    - 0.272
+    - 0
+  - - 0.56
+    - 0.349
+    - 0.268
+    - 0.363
+    - 0
+  - - 0.68
+    - 1.696
+    - 0.344
+    - 0.401
+    - 0
+  - - 0.76
+    - 0.412
+    - 0.462
+    - 0.557
+    - 0
+  - - 0.88
+    - 1.213
+    - 0.437
+    - 0.453
+    - 0
+  - - 0.96
+    - 0.432
+    - 0.645
+    - 0.717
+    - 0
+  - - 1.08
+    - 0.551
+    - 0.443
+    - 0.452
+    - 0
+  - - 1.16
+    - 0.585
+    - 0.768
+    - 0.795
+    - 0
+  - - 1.28
+    - 0.532
+    - 0.368
+    - 0.397
+    - 0
+  - - 1.36
+    - 0.624
+    - 0.789
+    - 0.797
+    - 0
+  - - 1.48
+    - 0.604
+    - 0.252
+    - 0.287
+    - 0
+  - - 1.56
+    - 0.555
+    - 0.697
+    - 0.737
+    - 0
+  - - 1.68
+    - 0.366
+    - 0.145
+    - 0.173
+    - 0
+  - - 1.76
+    - 0.495
+    - 0.514
+    - 0.576
+    - 0
+  - - 1.88
+    - 0.364
+    - 0.072
+    - 0.089
+    - 0
+  - - 1.96
+    - 0.364
+    - 0.292
+    - 0.358
+    - 0
+  - - 2.08
+    - 0.318
+    - 0.028
+    - 0.038
+    - 0
+  - - 2.16
+    - 0.308
+    - 0.096
+    - 0.146
+    - 0
+  - - 2.28
+    - 0.284
+    - 0.004
+    - 0.008
+    - 0
+  - - 2.36
+    - 0.28
+    - 0.003
+    - 0.012
+    - 0
+  - - 2.48
+    - 0.269
+    - 0.075
+    - 0.227
+    - 0
+  - - 2.56
+    - 0.343
+    - 0.003
+    - 0.007
+    - 0
+  - - 2.68
+    - 0.404
+    - 0.442
+    - 0.666
+    - 0
+  - - 2.76
+    - 0.371
+    - 0.011
+    - 0.015
+    - 0
+  - - 2.88
+    - 1.361
+    - 0.87
+    - 1.031
+    - 0
+  - - 2.96
+    - 0.268
+    - 0.019
+    - 0.022
+    - 0
+  - - 3.08
+    - 1.361
+    - 1.111
+    - 1.141
+    - 0
+  - - 3.16
+    - 0.355
+    - 0.024
+    - 0.026
+    - 0
+  - - 3.28
+    - 1.325
+    - 1.087
+    - 1.128
+    - 0
+  - - 3.36
+    - 0.319
+    - 0.026
+    - 0.026
+    - 0
+  - - 3.48
+    - 1.392
+    - 0.931
+    - 0.992
+    - 0
+  - - 3.56
+    - 0.319
+    - 0.023
+    - 0.025
+    - 0
+  - - 3.68
+    - .nan
+    - 0.728
+    - 0.801
+    - 0
+  - - 3.76
+    - 0.348
+    - 0.017
+    - 0.019
+    - 0
+  - - 3.88
+    - .nan
+    - 0.452
+    - 0.541
+    - 0
+  - - 3.96
+    - 0.332
+    - 0.009
+    - 0.012
+    - 0
+  - - 4.08
+    - .nan
+    - 0.166
+    - 0.242
+    - 0
+  - - 4.16
+    - 0.291
+    - 0.002
+    - 0.004
+    - 0
+  - - 4.28
+    - .nan
+    - 0.006
+    - 0.102
+    - 0
+  - - 4.36
+    - 0.36
+    - 0.0
+    - 0.0
+    - 0
+  - - 4.48
+    - .nan
+    - 0.347
+    - 0.455
+    - 0
+  - - 4.56
+    - 0.318
+    - 0.0
+    - 0.0
+    - 0
+  - - 4.68
+    - .nan
+    - 0.271
+    - 0.41
+    - 0
+  - - 4.76
+    - 0.289
+    - 0.0
+    - 0.011
+    - 0
+  - - 4.88
+    - .nan
+    - 0.026
+    - 0.107
+    - 0
+  - - 4.96
+    - 0.338
+    - 0.084
+    - 0.195
+    - 0
+  - - 5.08
+    - .nan
+    - 0.237
+    - 0.38
+    - 0
+  - - 5.16
+    - 0.414
+    - 0.327
+    - 0.454
+    - 0
+  - - 5.28
+    - .nan
+    - 0.523
+    - 0.647
+    - 0
+  - - 5.36
+    - 0.694
+    - 0.558
+    - 0.63
+    - 0
+  - - 5.48
+    - .nan
+    - 0.735
+    - 0.785
+    - 0
+  - - 5.56
+    - 0.811
+    - 0.655
+    - 0.659
+    - 0
+  - - 5.68
+    - 2.0
+    - 0.783
+    - 0.792
+    - 0
+  - - 5.76
+    - 0.803
+    - 0.592
+    - 0.628
+    - 0
+  - - 5.88
+    - 0.911
+    - 0.657
+    - 0.712
+    - 0
+  - - 5.96
+    - 0.662
+    - 0.421
+    - 0.479
+    - 0

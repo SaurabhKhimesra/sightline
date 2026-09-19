@@ -1,0 +1,14 @@
+# the park pose found in gate 1 (results/gate1/gate1.yaml): the tool tip above the
+# worktop on the robot's side, hiding nothing from the eyes camera
+tip_x: -0.45
+tip_y: 0.33
+tip_above_worktop: 0.3
+turn_deg: 0
+worst_worker_blocked_pct: 0.0
+joints_rad:
+- 4.3596
+- 4.2553
+- -1.6279
+- -5.7691
+- 3.4944
+- 3.1416

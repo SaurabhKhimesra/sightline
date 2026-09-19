@@ -1,0 +1,375 @@
+cycle_s: 44.4
+peak_hand_speed_m_s:
+  l: 1.308
+  r: 1.199
+peak_hand_accel_m_s2:
+  l: 4.4
+  r: 3.9
+worst_hand_push_mm: 36.45
+worst_hand_push_into: bench
+worst_hand_push_during: carry the base to the bench
+hand_push_mm:
+  bench: 36.5
+  jig: 26.9
+  part_cover: 24.5
+  part_rail: 20.6
+  part_base: 20.5
+foot_slide_mm: 817.61
+frames: 1306
+hands_seen_pct_worst: &id001
+  t: 4.59
+  segment: carry the base to the bench
+  hands_seen_pct: 0.0
+hands_seen_pct_mean: 23.5
+segments:
+- name: step to the rack
+  seconds: 1.8
+- name: take a base from the tote
+  seconds: 1.6
+- name: carry the base to the bench
+  seconds: 2.8
+- name: set the base in the jig
+  seconds: 1.6
+- name: step back for a rail
+  seconds: 2.0
+- name: take a rail
+  seconds: 1.4
+- name: fit the rail in the box
+  seconds: 3.0
+- name: press the rail down
+  seconds: 1.4
+- name: stand clear while the robot drives the rail screws
+  seconds: 3.4
+- name: clip blocks on the next rail
+  seconds: 3.4
+- name: step across for a cover
+  seconds: 2.2
+- name: take a cover
+  seconds: 1.4
+- name: bring the cover to the box
+  seconds: 2.6
+- name: press the cover on
+  seconds: 1.8
+- name: hold the cover while the robot screws
+  seconds: 3.6
+- name: hand rests beside the next hole
+  seconds: 3.0
+- name: lift the finished box
+  seconds: 2.6
+- name: put it in the tray
+  seconds: 2.6
+- name: back to rest
+  seconds: 2.2
+reach_errors_mm:
+- segment: step to the rack
+- segment: take a base from the tote
+  l: 0.0
+- segment: carry the base to the bench
+  l: 0.0
+  r: 0.0
+- segment: set the base in the jig
+  l: 0.0
+  r: 0.0
+- segment: step back for a rail
+- segment: take a rail
+  l: 0.0
+- segment: fit the rail in the box
+  l: 0.0
+  r: 0.0
+- segment: press the rail down
+  l: 0.0
+  r: 0.0
+- segment: stand clear while the robot drives the rail screws
+  l: 0.0
+  r: 0.0
+- segment: clip blocks on the next rail
+  l: 0.0
+  r: 0.0
+- segment: step across for a cover
+- segment: take a cover
+  l: 0.0
+- segment: bring the cover to the box
+  l: 0.0
+  r: 0.0
+- segment: press the cover on
+  l: 0.0
+  r: 0.0
+- segment: hold the cover while the robot screws
+  l: 0.0
+  r: 0.0
+- segment: hand rests beside the next hole
+  l: 0.0
+  r: 0.0
+- segment: lift the finished box
+  l: 0.0
+  r: 0.0
+- segment: put it in the tray
+  l: 0.0
+  r: 0.0
+- segment: back to rest
+  l: 0.0
+  r: 0.0
+worst_reach_error_mm: 0.0
+hands_seen_trace:
+- t: 0.0
+  segment: step to the rack
+  hands_seen_pct: 9.7
+- t: 0.51
+  segment: step to the rack
+  hands_seen_pct: 9.7
+- t: 1.02
+  segment: step to the rack
+  hands_seen_pct: 12.8
+- t: 1.53
+  segment: step to the rack
+  hands_seen_pct: 8.8
+- t: 2.04
+  segment: take a base from the tote
+  hands_seen_pct: 9.3
+- t: 2.55
+  segment: take a base from the tote
+  hands_seen_pct: 2.7
+- t: 3.06
+  segment: take a base from the tote
+  hands_seen_pct: 0.9
+- t: 3.57
+  segment: carry the base to the bench
+  hands_seen_pct: 0.9
+- t: 4.08
+  segment: carry the base to the bench
+  hands_seen_pct: 0.4
+- *id001
+- t: 5.1
+  segment: carry the base to the bench
+  hands_seen_pct: 23.5
+- t: 5.61
+  segment: carry the base to the bench
+  hands_seen_pct: 21.2
+- t: 6.12
+  segment: carry the base to the bench
+  hands_seen_pct: 24.3
+- t: 6.63
+  segment: set the base in the jig
+  hands_seen_pct: 25.2
+- t: 7.14
+  segment: set the base in the jig
+  hands_seen_pct: 27.4
+- t: 7.65
+  segment: set the base in the jig
+  hands_seen_pct: 31.9
+- t: 8.16
+  segment: step back for a rail
+  hands_seen_pct: 23.9
+- t: 8.67
+  segment: step back for a rail
+  hands_seen_pct: 23.5
+- t: 9.18
+  segment: step back for a rail
+  hands_seen_pct: 25.2
+- t: 9.69
+  segment: step back for a rail
+  hands_seen_pct: 28.3
+- t: 10.2
+  segment: take a rail
+  hands_seen_pct: 28.3
+- t: 10.71
+  segment: take a rail
+  hands_seen_pct: 29.6
+- t: 11.22
+  segment: fit the rail in the box
+  hands_seen_pct: 27.4
+- t: 11.73
+  segment: fit the rail in the box
+  hands_seen_pct: 27.9
+- t: 12.24
+  segment: fit the rail in the box
+  hands_seen_pct: 28.3
+- t: 12.75
+  segment: fit the rail in the box
+  hands_seen_pct: 31.4
+- t: 13.26
+  segment: fit the rail in the box
+  hands_seen_pct: 23.9
+- t: 13.77
+  segment: fit the rail in the box
+  hands_seen_pct: 24.3
+- t: 14.28
+  segment: press the rail down
+  hands_seen_pct: 27.0
+- t: 14.79
+  segment: press the rail down
+  hands_seen_pct: 27.9
+- t: 15.3
+  segment: press the rail down
+  hands_seen_pct: 27.0
+- t: 15.81
+  segment: stand clear while the robot drives the rail screws
+  hands_seen_pct: 24.8
+- t: 16.32
+  segment: stand clear while the robot drives the rail screws
+  hands_seen_pct: 20.8
+- t: 16.83
+  segment: stand clear while the robot drives the rail screws
+  hands_seen_pct: 24.8
+- t: 17.34
+  segment: stand clear while the robot drives the rail screws
+  hands_seen_pct: 29.2
+- t: 17.85
+  segment: stand clear while the robot drives the rail screws
+  hands_seen_pct: 17.3
+- t: 18.36
+  segment: stand clear while the robot drives the rail screws
+  hands_seen_pct: 16.8
+- t: 18.87
+  segment: stand clear while the robot drives the rail screws
+  hands_seen_pct: 17.3
+- t: 19.38
+  segment: clip blocks on the next rail
+  hands_seen_pct: 17.3
+- t: 19.89
+  segment: clip blocks on the next rail
+  hands_seen_pct: 19.9
+- t: 20.4
+  segment: clip blocks on the next rail
+  hands_seen_pct: 23.0
+- t: 20.91
+  segment: clip blocks on the next rail
+  hands_seen_pct: 28.3
+- t: 21.42
+  segment: clip blocks on the next rail
+  hands_seen_pct: 34.1
+- t: 21.93
+  segment: clip blocks on the next rail
+  hands_seen_pct: 34.1
+- t: 22.44
+  segment: step across for a cover
+  hands_seen_pct: 34.5
+- t: 22.95
+  segment: step across for a cover
+  hands_seen_pct: 35.8
+- t: 23.46
+  segment: step across for a cover
+  hands_seen_pct: 36.3
+- t: 23.97
+  segment: step across for a cover
+  hands_seen_pct: 29.2
+- t: 24.48
+  segment: step across for a cover
+  hands_seen_pct: 25.7
+- t: 24.99
+  segment: take a cover
+  hands_seen_pct: 25.7
+- t: 25.5
+  segment: take a cover
+  hands_seen_pct: 25.7
+- t: 26.01
+  segment: bring the cover to the box
+  hands_seen_pct: 24.8
+- t: 26.52
+  segment: bring the cover to the box
+  hands_seen_pct: 24.8
+- t: 27.03
+  segment: bring the cover to the box
+  hands_seen_pct: 23.9
+- t: 27.54
+  segment: bring the cover to the box
+  hands_seen_pct: 18.6
+- t: 28.05
+  segment: bring the cover to the box
+  hands_seen_pct: 21.2
+- t: 28.56
+  segment: bring the cover to the box
+  hands_seen_pct: 22.1
+- t: 29.07
+  segment: press the cover on
+  hands_seen_pct: 23.9
+- t: 29.58
+  segment: press the cover on
+  hands_seen_pct: 26.5
+- t: 30.09
+  segment: press the cover on
+  hands_seen_pct: 31.9
+- t: 30.6
+  segment: hold the cover while the robot screws
+  hands_seen_pct: 31.4
+- t: 31.11
+  segment: hold the cover while the robot screws
+  hands_seen_pct: 31.9
+- t: 31.62
+  segment: hold the cover while the robot screws
+  hands_seen_pct: 31.9
+- t: 32.13
+  segment: hold the cover while the robot screws
+  hands_seen_pct: 31.9
+- t: 32.64
+  segment: hold the cover while the robot screws
+  hands_seen_pct: 31.9
+- t: 33.15
+  segment: hold the cover while the robot screws
+  hands_seen_pct: 31.4
+- t: 33.66
+  segment: hold the cover while the robot screws
+  hands_seen_pct: 31.4
+- t: 34.17
+  segment: hand rests beside the next hole
+  hands_seen_pct: 31.4
+- t: 34.68
+  segment: hand rests beside the next hole
+  hands_seen_pct: 31.4
+- t: 35.19
+  segment: hand rests beside the next hole
+  hands_seen_pct: 31.9
+- t: 35.7
+  segment: hand rests beside the next hole
+  hands_seen_pct: 27.9
+- t: 36.21
+  segment: hand rests beside the next hole
+  hands_seen_pct: 25.7
+- t: 36.72
+  segment: hand rests beside the next hole
+  hands_seen_pct: 25.7
+- t: 37.23
+  segment: lift the finished box
+  hands_seen_pct: 22.6
+- t: 37.74
+  segment: lift the finished box
+  hands_seen_pct: 23.5
+- t: 38.25
+  segment: lift the finished box
+  hands_seen_pct: 16.8
+- t: 38.76
+  segment: lift the finished box
+  hands_seen_pct: 18.1
+- t: 39.27
+  segment: lift the finished box
+  hands_seen_pct: 18.1
+- t: 39.78
+  segment: put it in the tray
+  hands_seen_pct: 19.0
+- t: 40.29
+  segment: put it in the tray
+  hands_seen_pct: 15.0
+- t: 40.8
+  segment: put it in the tray
+  hands_seen_pct: 15.0
+- t: 41.31
+  segment: put it in the tray
+  hands_seen_pct: 24.8
+- t: 41.82
+  segment: put it in the tray
+  hands_seen_pct: 19.9
+- t: 42.33
+  segment: back to rest
+  hands_seen_pct: 20.8
+- t: 42.84
+  segment: back to rest
+  hands_seen_pct: 31.0
+- t: 43.35
+  segment: back to rest
+  hands_seen_pct: 32.3
+- t: 43.86
+  segment: back to rest
+  hands_seen_pct: 23.0
+- t: 44.37
+  segment: back to rest
+  hands_seen_pct: 22.6
