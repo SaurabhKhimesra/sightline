@@ -23,6 +23,3 @@ results/**/*.pkl
 results/**/*.mkv
 results/gate5_probe/
 
-# local
-CLAUDE.md
-.claude/
