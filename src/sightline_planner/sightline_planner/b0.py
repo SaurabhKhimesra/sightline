@@ -6,7 +6,7 @@ never looks for the person, because nothing in a plain cell does. Gate 3 measure
 what that costs.
 
 Speeds, dwell times and the stand-off are scene choices and are stated in
-MODEL_NOTES. The robot's own limits come from the UR5e datasheet.
+docs/notes.md. The robot's own limits come from the UR5e datasheet.
 """
 
 from __future__ import annotations

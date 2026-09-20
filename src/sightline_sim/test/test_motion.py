@@ -1,6 +1,6 @@
 """The QP solver and the motion layer.
 
-SPEC.md section 8.5: the solver is tested by checking the optimality conditions on
+docs/design.md section 8.5: the solver is tested by checking the optimality conditions on
 random problems. The motion layer is tested on the three things it must do: not
 close on a person in the way, not slow an empty cell, and back away from a person
 walking in.

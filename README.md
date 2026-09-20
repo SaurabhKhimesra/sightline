@@ -1,73 +1,103 @@
 # SightLine
 
-A ROS 2 workspace for a screwdriving cell where a person and a UR5e build a control
-box together. The robot plans in real time from an overhead depth camera, keeps two
-hard rules, and is scored by an independent judge:
+A UR5e that drives screws next to a person without touching them and without
+getting between them and the camera that watches them. ROS 2 Lyrical, MuJoCo for
+the physics, Gazebo Sim and rviz2 for looking at it.
 
-- **R1** never touch the person.
-- **R2** never block the overhead camera's view of the person.
+![one cycle from the front](docs/media/front.gif)
 
-The planner treats the camera's view as a grid of directions. Wherever the camera
-sees the worker, that direction is off limits to the arm, from the camera out to
-15 cm behind him, with a margin for the arm's size and for how far he could move
-before the arm stops. The grid is rebuilt with every picture (25 Hz) and the arm's
-next moves are checked against it at 63 points every 10 ms.
+*One assembly cycle, rendered by Gazebo from a camera facing the worker. The band at
+the top is what the judge recorded. Full videos are under
+[releases](../../releases).*
 
-**Result, one 81 s cycle (seed 0):** 6 of 6 screws driven, 0 contacts, 0 frames with
-the worker's view blocked, closest approach 97 mm, three of the screws driven while
-he worked 40 cm from the robot. The same planner run live as a ROS 2 node reproduces
-that run to the millimetre. Numbers and how they were measured: `docs/RESULTS_LOG.md`.
+## What it does
 
-Everything here is measured in simulation. Nothing on this page certifies a cell or
-replaces a physical measurement.
+An overhead depth camera looks down at the bench. I treat the camera's view as a
+grid of directions. Every direction in which it currently sees the person is off
+limits for the arm, from the camera down to 15 cm behind them, plus a margin for the
+arm's own thickness and for how far the person could move before the arm can stop.
+The grid is rebuilt for every frame (25 Hz), and the arm's next moves are checked
+against it at 63 points along the links every 10 ms. If a move would enter the grid
+the arm brakes, backs out along its own path, or retreats to a standoff. It also
+picks which screw to drive next, and from which side, based on what is clear.
 
-## Packages
+The two rules are scored by a judge that reads the simulator state directly. The
+planner never sees that state; it gets a noisy, one-frame-late depth image and its
+own joint angles, like it would on a real cell.
 
-| Package | What it is |
-|---|---|
-| `sightline_planner` | The robot's own code: the view grid, the 10 ms guard, the task that picks the screw. Imports nothing from the simulation (a test enforces it). |
-| `sightline_sim` | The cell in MuJoCo: station, worker and his cycle, cameras with measured noise, the judge that scores R1 and R2 from the simulator's state, the validation gates, the export to Gazebo Sim. |
-| `sightline_ros` | The ROS 2 layer: `cell_node` and `planner_node` in lockstep on sim time, the topic contract, `replay_live` into Gazebo and rviz. |
-| `sightline_bringup` | Launch files, rviz and Gazebo configurations, the UR5e description on its mount, the recording scripts. |
+1. never touch the person
+2. never block the overhead camera's view of the person
 
-## Setup
+## Results
 
-ROS 2 Lyrical with Gazebo Sim, `ros_gz_bridge`, `rviz2`, `robot_state_publisher`,
-`ur_description` and `xacro`. The MuJoCo Menagerie for the UR5e model, and the Python
-packages of `requirements.txt` in the interpreter that runs the nodes:
+One 81 s cycle, seed 0. B0 is the same controller with the rules switched off, B2 and
+B3 use the usual distance dampers (B3 also dampens the sight lines), B4 is the grid.
+
+|                                        | B0     | B2     | B3     | B4 (grid) |
+|----------------------------------------|--------|--------|--------|-----------|
+| screws driven                          | 6 / 6  | 4 / 6  | 4 / 6  | 6 / 6     |
+| contacts the robot caused              | 5      | 5      | 8      | 0         |
+| contacts the person caused             | 35     | 1      | 29     | 0         |
+| deepest contact                        | 76 mm  | 60 mm  | 76 mm  | none, closest 97 mm |
+| frames with the person hidden          | 10.1 % | 9.8 %  | 14.4 % | 0.0 %     |
+| times it asked the person to move      | 0      | 3      | 3      | 0         |
+| compute per 10 ms cycle, median        | 0.2 ms | 7.4 ms | 9.3 ms | 1.0 ms    |
+
+Three of B4's six screws went in while the worker was busy 40 cm away from the
+robot, which was the point of ordering the tasks that way. Running the planner as a
+ROS 2 node instead of in-process gives the same run to the millimetre (checked, see
+`docs/results.md`).
+
+This is one seed, in simulation. It does not certify anything.
+
+## Layout
 
 ```
-git clone https://github.com/google-deepmind/mujoco_menagerie ~/mujoco_menagerie
-export MUJOCO_MENAGERIE=~/mujoco_menagerie          # the default is this path
-pip install -r requirements.txt                    # or into a venv whose site-packages you put on PYTHONPATH
-pip install --no-deps sdformat-mjcf                 # only for the Gazebo export
+src/sightline_planner   the robot's own code: view grid, guard, task. Imports nothing from the sim.
+src/sightline_sim       the cell in MuJoCo: station, worker, cameras, the judge, the gate scripts, Gazebo export
+src/sightline_ros       cell_node and planner_node (lockstep on sim time), replay_live, the topic contract
+src/sightline_bringup   launch files, rviz/Gazebo configs, UR5e xacro, recording scripts
+docs/                   design.md (the spec and every change since), notes.md (model choices with sources), results.md
+results/                the numbers of every gate; videos, frames and bags are not committed
+```
+
+## Install
+
+Tested on Ubuntu with ROS 2 Lyrical, Gazebo Sim 10, Python 3.14, a GTX 1650.
+
+```bash
+sudo apt install ros-lyrical-ros-gz-bridge ros-lyrical-ur-description ros-lyrical-xacro \
+                 ros-lyrical-robot-state-publisher ros-lyrical-rviz2
+git clone https://github.com/google-deepmind/mujoco_menagerie ~/mujoco_menagerie   # UR5e model
+pip install -r requirements.txt            # into the python that runs your ROS 2 nodes
+pip install --no-deps sdformat-mjcf        # only needed for the Gazebo export
 
 colcon build --symlink-install
 source install/setup.bash
 ```
 
-Offscreen rendering uses EGL (`MUJOCO_GL=egl`, set by the launch files). On a laptop
-with two GPUs, point EGL at the discrete one:
+If the Menagerie checkout is somewhere else, set `MUJOCO_MENAGERIE`. Rendering is
+offscreen through EGL; on a laptop with two GPUs point it at the discrete one with
 `export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json`.
 
 ## Run
 
-The planner live, as two nodes in lockstep on sim time (the run does not depend on
-how fast the machine is), with rviz and a bag of the small topics:
+The planner live, as two nodes in lockstep on sim time (so the run is the same on a
+slow machine and a fast one), with rviz and a bag:
 
-```
+```bash
 ros2 launch sightline_bringup stage1.launch.py seed:=0 seconds:=full rviz:=true bag:=true
 ```
 
-Results land in `results/ros2/stage1/` (the judge's yaml, the planner's yaml, every
-body's pose at 25 Hz, the bag). In rviz: the UR5e on the joint states, the worker as
-the judge's capsules, the planner's grid as point clouds (red where the camera sees
-him, orange for cells its own arm hides, dark red the far end 15 cm behind him), the
-63 points the guard checks, the hole it is going for.
+Results go to `results/ros2/stage1/`: the judge's numbers, the planner's numbers,
+every body's pose at 25 Hz, the bag. rviz shows the UR5e on the joint states, the
+worker as the judge's capsules, and the planner's grid as point clouds (red where
+the camera sees the person, orange for cells the arm hides and the planner keeps for
+half a second, dark red the far end 15 cm behind them).
 
-The judged run rendered by Gazebo Sim, from the recorded poses:
+Gazebo rendering of a recorded run:
 
-```
+```bash
 python -c "from sightline_sim.station import export_mjcf; export_mjcf('results/ros2/scene')"
 ros2 run sightline_sim mjcf_to_sdf results/ros2/scene/sightline_cell.xml results/ros2/gazebo/sightline_cell.sdf
 ros2 run sightline_sim make_replay_world results/ros2/scene/sightline_cell.xml \
@@ -79,58 +109,28 @@ GZ_PARTITION=sightline ros2 run sightline_sim replay_gazebo results/ros2/stage1/
 ros2 run sightline_sim assemble_video results/ros2/stage1/run_B4_seed0_poses.npz results/ros2/gazebo/frames results/ros2/gazebo
 ```
 
-Live, in real time, with the Gazebo GUI and rviz open:
+Or live, with the Gazebo GUI and rviz open:
 
-```
+```bash
 ros2 launch sightline_bringup replay.launch.py poses:=results/ros2/stage1/run_B4_seed0_poses.npz gui:=true rviz:=true
 ```
 
-Recording the desktop (`ros2 run sightline_bringup record_windows.sh ...`) and a bag
-replayed into rviz (`record_bag_rviz.sh`) are in `sightline_bringup/scripts`;
-`docs/MODEL_NOTES.md` says how each is made and why.
+The gate scripts that produced the numbers in `results/` run one at a time from the
+workspace root, e.g. `ros2 run sightline_sim gate5_planner results/gate5 0 B4 --video`.
+Tests are plain unittest: `python -m unittest discover -s src/sightline_sim/test`
+(and the same for `sightline_planner` and `sightline_ros`, the last one with ROS
+sourced).
 
-The validation gates that produced the numbers, one command each, run from the
-workspace root (`ros2 run sightline_sim gate5_planner results/gate5 0 B4 --video`,
-and `gate1_stills`, `gate1_numbers`, `gate2_cycle`, `gate3_b0`, `gate4_perception`,
-`gate4_hole_views`, `eyes_options`, `eyes_optimise`, `blind_zone`).
+## Known issues and what's next
 
-Tests (unittest, no other dependency):
-
-```
-python -m unittest discover -s src/sightline_planner/test
-python -m unittest discover -s src/sightline_sim/test
-python -m unittest discover -s src/sightline_ros/test      # needs the ROS 2 environment sourced
-```
-
-## Videos
-
-In the release assets of this repository:
-
-- `B4_front_gazebo_seed0.mp4`: the judged run rendered by Gazebo Sim from a camera
-  facing the worker, captioned with the judge's record.
-- `B4_windows_front_seed0.mp4`: Gazebo's camera live on the GPU beside rviz2, in real time.
-- `B4_rviz_seed0.mp4`: the planner's own view during the live run, replayed from the bag.
-- `B4_hero_seed0.mp4`: the same run rendered by MuJoCo over the worker's shoulder.
-
-## Documents
-
-- `docs/SPEC.md`: the design, the rules, the gates, and every change since (section 19).
-- `docs/MODEL_NOTES.md`: every model choice with its source, or marked as a scene choice.
-- `docs/RESULTS_LOG.md`: the numbers of every gate, newest first, with what would change them.
-- `docs/CHANGELOG.md`: every bug found and the test that now catches it.
-
-## Stated plainly
-
-- The simulation is MuJoCo; Gazebo Sim renders the recorded runs and does not
-  simulate here.
-- The lockstep between the cell and the planner makes the run independent of the
-  machine's speed. A real cell has no lockstep: the planner's picture costs 137 ms on
-  this laptop against the camera's 40 ms period, and must come down or run one
-  picture behind before it drives hardware.
-- One seed so far. Held-out seeds, the look-around layer and the camera search with
-  the frame's mounts are next.
-- The worker model, the enclosure, the DIN rail, the terminal blocks and the feeder
-  are scene choices, not products. The cameras, the screwdriver, the screws and the
-  worker's height are from datasheets and published ranges, cited in the notes.
+- Perception costs about 137 ms per frame on this laptop against the camera's 40 ms.
+  The lockstep hides that in simulation; a real cell has no lockstep. Needs to come
+  down, or run one frame behind, before this touches hardware.
+- One seed. More seeds and a proper search for the camera mount (the cell has an
+  aluminium frame that would carry it better than the pole) are next.
+- The worker model, enclosure, DIN rail, terminal blocks and feeder are made up. The
+  cameras, screwdriver, screws and the worker's height come from datasheets and
+  published ranges; `docs/notes.md` has the sources.
+- Gazebo's lights only cast shadows in the headless render, the GUI crashes on them.
 
 MIT licence.

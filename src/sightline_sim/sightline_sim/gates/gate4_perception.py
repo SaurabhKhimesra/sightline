@@ -1,7 +1,7 @@
 """Gate 4: what the robot can work out from its two cameras.
 
 Runs the same episode as gate 3, with the eyes pipeline on every camera frame and
-the wrist pipeline whenever the robot is lining up on a hole. Measures what SPEC.md
+the wrist pipeline whenever the robot is lining up on a hole. Measures what docs/design.md
 section 12 asks for: person recall and precision, delay, box pose error, hole error,
 and how well blocking is predicted before it happens.
 

@@ -12,7 +12,7 @@ rebuilt with every picture, every 40 ms. Every 10 ms the guard (guard.py) checks
 the arm can keep its command one more cycle and still stop outside it, and slows,
 brakes or backs the arm out if not.
 
-On top of that, B4 does what SPEC.md section 8.4 lists, in its order. It keeps
+On top of that, B4 does what docs/design.md section 8.4 lists, in its order. It keeps
 several ways of driving every screw, one per usable turn angle around the bit, each
 solved once when the cell is taught. The feeder trip is the same whichever hole comes
 next, since all screws are alike and the bit is symmetric, so the choice is made when

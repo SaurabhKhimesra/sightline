@@ -2,7 +2,7 @@
 
 The worker is played back, not simulated: every step writes his joint positions
 from the script, so he can neither fall nor be pushed. Carried parts ride on the
-hand frame; placed parts sit where they were put. SPEC.md section 7.
+hand frame; placed parts sit where they were put. docs/design.md section 7.
 """
 
 from __future__ import annotations
@@ -54,7 +54,7 @@ def cycle(scene: station.Scene) -> list[Segment]:
 
     Durations and stances are scene choices. The rack is out of arm's reach from
     the bench, so the worker takes a side step to it and back, which is what
-    SPEC.md section 7 allows. Every hand target here is inside the model's reach;
+    docs/design.md section 7 allows. Every hand target here is inside the model's reach;
     build_playback reports the error if one is not.
 
     The cover is held by the jig's two toggle clamps, not by his hand (the user's
@@ -200,7 +200,7 @@ def cycle(scene: station.Scene) -> list[Segment]:
                 gaze=watch, stance=at_wait),
         # long enough for the robot's four cover screws. A real cell ends this on the
         # stack light; the script cannot, so the time is a scene choice, stated in
-        # MODEL_NOTES, and a robot that is slower loses the rest of the screws
+        # docs/notes.md, and a robot that is slower loses the rest of the screws
         Segment("wait for the green light", WAIT_FOR_COVER_SCREWS_S, left=bench_side_left, right=bench_side_right,
                 lean=0.04, gaze=watch, stance=at_wait),
         Segment("step in and open the clamps", 2.6, left=left_rest, right=front_clamp, lean=0.24,

@@ -4,7 +4,7 @@ World frame: z up, origin on the floor under the bench centre, +y from the
 worker toward the robot, +x to the worker's right.
 
 Numbers carry their source. Everything else is a scene choice, picked to look
-like a real assembly cell; MODEL_NOTES.md lists them.
+like a real assembly cell; docs/notes.md lists them.
 """
 
 from __future__ import annotations
@@ -832,7 +832,7 @@ def build_robot(b: Builder, L: Layout, zw: float) -> dict:
     g = b.cyl(w3, 0.060, SD_BODY_HEIGHT / 2, cp, rot=cR, group=GROUP_COLLISION)
     g.contype, g.conaffinity = 1, 1
     # The nose, the bit holder and the screw on it. R1 covers the arm, the screwdriver,
-    # the wrist camera and the screw (SPEC.md section 4), and without these the bit tip
+    # the wrist camera and the screw (docs/design.md section 4), and without these the bit tip
     # sits 74 mm outside every collision geom, so the one contact most likely to happen,
     # a poke with the screw, would be scored as clear.
     for y0, y1, radius in ((y_bot, y_bot - SD_NOSE_LEN, SD_NOSE_D / 2),
@@ -1012,7 +1012,7 @@ WORKPIECE_GROUP = GROUP_WORKER   # renders with the robot, never counts as a rob
 def robot_only_model(layout: Layout | None = None, with_workpiece: bool = True) -> mujoco.MjModel:
     """The robot, its tool and its cameras on their mount, and nothing else.
 
-    This is what the planner is allowed to hold: its own robot model (SPEC.md
+    This is what the planner is allowed to hold: its own robot model (docs/design.md
     section 8.1). It carries no worker and no station, so nothing in it can leak
     the person's geometry. The worktop height comes from the same layout, so the
     mount sits where it does in the cell.

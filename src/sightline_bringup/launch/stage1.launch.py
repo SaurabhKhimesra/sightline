@@ -5,7 +5,7 @@
 Run from the workspace root: the nodes write their results under results/ros2/stage1.
 The cell waits for the planner's ready message before its first tick, and every tick
 waits for the planner's command, so the run is the same run at any speed the machine
-manages (MODEL_NOTES, "The planner live on ROS 2").
+manages (docs/notes.md, "The planner live on ROS 2").
 """
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, ExecuteProcess, OpaqueFunction, SetEnvironmentVariable

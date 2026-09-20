@@ -5,7 +5,7 @@ pose and read what the wrist camera has at the hole's own pixel. The camera sits
 75 mm off the screw axis, so the turn angle decides what it looks past, and inside
 the enclosure it often looks at a wall instead of the hole.
 
-This is the table the look-around layer needs (SPEC.md section 8.4 lists "a clear
+This is the table the look-around layer needs (docs/design.md section 8.4 lists "a clear
 line from the wrist camera to the hole" as one of its checks).
 
 Usage: MUJOCO_GL=egl python scripts/gate4_hole_views.py [out_dir]

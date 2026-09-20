@@ -1,10 +1,10 @@
 """Gate 3: B0, the baseline that ignores the worker.
 
 Plain visual servoing to every screw while the worker builds the box. The planner
-sees only what SPEC.md section 8.1 allows. The judge measures R1 and R2 from the
+sees only what docs/design.md section 8.1 allows. The judge measures R1 and R2 from the
 simulator's own state.
 
-**Kill test (SPEC.md section 12):** if B0 shows no contacts and no blocked frames on
+**Kill test (docs/design.md section 12):** if B0 shows no contacts and no blocked frames on
 the development seeds, there is nothing to avoid and the task needs rethinking.
 
 Usage: MUJOCO_GL=egl python scripts/gate3_b0.py [out_dir] [seed] [--video]

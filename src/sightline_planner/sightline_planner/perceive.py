@@ -1,6 +1,6 @@
 """What the robot works out about the cell from its two cameras.
 
-SPEC.md section 8.3. Depth to points, background out, its own arm out, the box out,
+docs/design.md section 8.3. Depth to points, background out, its own arm out, the box out,
 and whatever is left is treated as the person. Behind the person, the space the
 camera cannot see is treated as occupied too, which is the depth space idea of
 Flacco et al. 2012.
@@ -17,7 +17,7 @@ from dataclasses import dataclass, field
 import mujoco
 import numpy as np
 
-VOXEL_M = 0.02           # person voxel size, SPEC.md section 8.3 (scene choice)
+VOXEL_M = 0.02           # person voxel size, docs/design.md section 8.3 (scene choice)
 UNSEEN_DEPTH_M = 0.30    # how far behind a person point counts as occupied (scene choice)
 BACKGROUND_MARGIN_M = 0.04   # least a point must beat the empty station by (scene choice)
 BACKGROUND_SIGMAS = 3.0      # and at least this many standard deviations of depth noise
@@ -42,7 +42,7 @@ class Calibration:
     """Where the planner believes the eyes camera is, and what it believes it sees.
 
     A cell knows this from its own calibration, never perfectly. The error is a
-    scene choice and is stated in MODEL_NOTES.
+    scene choice and is stated in docs/notes.md.
     """
     pos: np.ndarray
     R: np.ndarray
@@ -76,7 +76,7 @@ class Calibration:
 class KnownWorld:
     """A depth image of what the planner already knows is there: its own arm at its
     current joint angles and the parts at their fitted pose, seen from where it
-    believes the eyes camera is. SPEC.md section 8.3, steps 3 and 4.
+    believes the eyes camera is. docs/design.md section 8.3, steps 3 and 4.
 
     Anything clearly in front of this, and of the empty cell, is not explained by
     anything the planner knows, so it is the person. Deleting every point within

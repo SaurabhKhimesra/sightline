@@ -1,7 +1,7 @@
 """The motion layer: every cycle, choose the joint velocity that does the job safely.
 
 The task wants a tool velocity. The rules want distances kept. Both go into one
-quadratic programme (SPEC.md section 8.5): the task sits in the objective, where it
+quadratic programme (docs/design.md section 8.5): the task sits in the objective, where it
 can be given up, and the rules sit in the constraints, where they cannot.
 
 Distances are held with the velocity damper of Faverjon and Tournassoud 1987: while
@@ -25,7 +25,7 @@ import numpy as np
 from . import qp
 from .kin import shape_line
 
-# All scene choices, stated in MODEL_NOTES.
+# All scene choices, stated in docs/notes.md.
 #
 # A pair may close only as fast as it could still stop before its safety distance:
 # approach speed <= sqrt(2 a (d - d_s)). The influence distance is where that allows

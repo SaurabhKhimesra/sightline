@@ -1,4 +1,4 @@
-"""R1 and R2, measured the way SPEC.md section 4 defines them.
+"""R1 and R2, measured the way docs/design.md section 4 defines them.
 
 R1: at every step, the distance between every robot geom and every human geom is
 above zero. Every contact is labelled with who moved in.
@@ -19,7 +19,7 @@ import numpy as np
 
 from .. import station
 
-# who moved in, per SPEC.md section 4: put the robot back one motion cycle and keep
+# who moved in, per docs/design.md section 4: put the robot back one motion cycle and keep
 # the person where they are. The cycle is 10 ms.
 MOTION_CYCLE_S = 0.010
 GEOM_TYPE = int(mujoco.mjtObj.mjOBJ_GEOM)
@@ -54,7 +54,7 @@ class BlockEvent:
     t_end: float
     frames: int
     worst_pixels: int
-    who_moved_in: str          # SPEC.md section 4: the robot back one motion cycle, 10 ms
+    who_moved_in: str          # docs/design.md section 4: the robot back one motion cycle, 10 ms
     who_moved_in_frame: str    # the robot back one camera frame, 40 ms at 25 Hz
 
 

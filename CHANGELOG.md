@@ -91,7 +91,7 @@ one hid the next.
   everything inside the jig volume, where his hands are while the robot works. With
   the tool beside his hand the truth had 36 to 55 person voxels within 10 cm of the
   arm and the planner had none; its closest was 137 mm away while his hand was 7 mm
-  away. Replaced by SPEC 8.3's method: render what the planner knows is there (its
+  away. Replaced by design.md 8.3's method: render what the planner knows is there (its
   own arm, the parts at their fitted pose) as a depth image from the calibrated
   camera, and call only what is clearly in front of that the person. The render
   matches the simulator's camera to 0.00 mm. Now 22 to 24 voxels within 10 cm are
@@ -158,7 +158,7 @@ one hid the next.
 - **The gate 2 blind spot was blamed on the wrong thing.** I wrote that the rack's
   shelves hide the worker's hands while he carries a part back. Ray casting names
   the blocker: the bench top, 492 of 662 points; the rack hides none. Corrected in
-  RESULTS_LOG. The fix that follows is different too: no rack change helps, the
+  results.md. The fix that follows is different too: no rack change helps, the
   camera position does a little, and the rest is a planner rule.
 
 Found while building B4 on the camera grid (the grid algorithm, 25 Hz):
@@ -233,7 +233,7 @@ Found while building B4 on the camera grid (the grid algorithm, 25 Hz):
 - **The robot could have driven a rail screw through the cover.** The jig signalled
   "cover ready" only when the clamps closed, 2 s after the cover was placed, and
   nothing told the planner the rail screws were under it. The jig now signals the
-  cover placed and the clamps opened as well (SPEC section 19).
+  cover placed and the clamps opened as well (design.md section 19).
 - **Dropping the hands to his sides by "hang" swung the right hand over the jig** at
   1.9 m/s: the joint blend from reaching to the hanging pose. Explicit targets where
   the hands hang, 2 cm up; a target 6 cm higher or 4 cm further forward missed by 25
@@ -253,7 +253,7 @@ Found while building B4 on the camera grid (the grid algorithm, 25 Hz):
   lateral noise sampled the tool's front face at its edge, 70 mm in front of the
   rendered edge; the grid kept the two cells as "hidden under the arm" and the arm
   backed away from itself, 2.7 s lost before a rail screw. A return within 80 mm in
-  front of the robot's own rendered surface is the robot now (MODEL_NOTES).
+  front of the robot's own rendered surface is the robot now (notes.md).
 - **Turning from the rack to the bench swung his free hand 6 mm from the robot's
   shoulder.** With the rack moved, the turn is 105 degrees, and the joint blend of
   the turn and the walk swept the hanging right hand in an arc over the jig's back
@@ -325,7 +325,7 @@ Found while building B4 on the camera grid (the grid algorithm, 25 Hz):
 
 - **The screwdriver had no collision geometry below its body.** The bit tip sat
   74 mm outside every robot collision geom, so R1, which must cover the arm, the
-  screwdriver, the wrist camera and the screw (SPEC.md section 4), would have
+  screwdriver, the wrist camera and the screw (docs/design.md section 4), would have
   scored a poke with the screw as clear. Fixed by adding capsules along the nose
   and the bit and a box for the wrist camera. The bit capsule is 8.5 mm fatter than
   the screw, so contacts are flagged slightly early, which is the safe direction.
@@ -333,7 +333,7 @@ Found while building B4 on the camera grid (the grid algorithm, 25 Hz):
   it, so once the tool had collision geometry every pose that reached them counted
   as a crash and the reach table read 0 of 24. Fixed by modelling the base as a
   floor, four walls and the screw bosses, and the DIN rail as a strip plus its
-  block cluster, so the two screw slots stay open. The honest number is 17 of 24.
+  block cluster, so the two screw slots stay open. The number is 17 of 24.
 - **The per-hand visibility sample silently dropped the thumb.** `worker_seen` asked
   for the hand and fingers but not the thumb, so a hand went from 201 sampled points
   to 168 and every per-hand number moved by a few points, including the worst case
@@ -341,7 +341,7 @@ Found while building B4 on the camera grid (the grid algorithm, 25 Hz):
   reproduce its own stored numbers. Fixed, and gate 1 now reproduces exactly.
 - **`sightline_sim/gates/gate1_numbers.py` could not reproduce the gate 1 record.** It called
   the visibility measurement with the default ray stride and no field-of-view check,
-  while RESULTS_LOG documents every 5th vertex and points counted only if in shot.
+  while results.md documents every 5th vertex and points counted only if in shot.
   Fixed, and the stride is written into the results file.
 
 - **The planner's wrist camera never moved.** `mj_kinematics` updates bodies and
@@ -364,7 +364,7 @@ Found while building B4 on the camera grid (the grid algorithm, 25 Hz):
   10 ms, which is 2.5 mm of arm travel, and by the time a 30 Hz camera catches an
   overlap it is wider than that. Fixed by labelling each blocking event once, when it
   starts, and by reporting the same question one camera frame back alongside it. For
-  open: SPEC.md section 4 defines the 10 ms test, and it does not answer this for
+  open: docs/design.md section 4 defines the 10 ms test, and it does not answer this for
   R2. Both numbers are in the results until decided.
 - **Segmentation rendering crashed, and anti-aliasing was the reason.**
   `Renderer.render()` raised `IndexError: index 579 is out of bounds for axis 0
@@ -373,7 +373,7 @@ Found while building B4 on the camera grid (the grid algorithm, 25 Hz):
   belong to no geom. Gate 1 worked around it by ray casting. Fixed properly by
   building the segmentation renderer while `model.vis.quality.offsamples` is 0 and
   restoring it afterwards, so the colour renderers keep their anti-aliasing. The R2
-  judge needs pixels (SPEC.md section 4), so the workaround could not stand.
+  judge needs pixels (docs/design.md section 4), so the workaround could not stand.
 
 ### Gate 2
 
@@ -399,7 +399,7 @@ Found while building B4 on the camera grid (the grid algorithm, 25 Hz):
   timeline, `segment_index` mapped time to the wrong segment, which would have fired
   grabs and releases at the wrong moment. Fixed by keeping segment boundaries in
   their own list (`seg_times`) apart from the interpolation keys.
-- **A citation in RESULTS_LOG was wrong.** Hand speeds were attributed to Nguyen et
+- **A citation in results.md was wrong.** Hand speeds were attributed to Nguyen et
   al. 2012, which is the Kinect depth noise paper and says nothing about hand speed.
   Removed and replaced with what the speeds actually are: a property of the script.
 

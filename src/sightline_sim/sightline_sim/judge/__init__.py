@@ -1,6 +1,6 @@
 """Ground truth for the two rules. The planner never imports this.
 
-R1 and R2 are defined in SPEC.md section 4. This package measures them from the
+R1 and R2 are defined in docs/design.md section 4. This package measures them from the
 simulator's own state, which is exactly what the planner is not allowed to see.
 """
 

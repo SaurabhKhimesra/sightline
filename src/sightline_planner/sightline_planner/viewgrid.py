@@ -34,7 +34,7 @@ Two things the camera cannot give directly are added:
   back, where each old cell counts both its nearest and its farthest pixel of him. A
   reading needs a neighbouring cell that agrees. Only the leading edge of a moving
   hand shows the jump, so each cell takes the fastest reading within a hand's size
-  around it, and keeps the fastest of the last 0.2 s. SPEC.md section 17.2 decided the
+  around it, and keeps the fastest of the last 0.2 s. docs/design.md section 17.2 decided the
   measured speed leads; the constant 2000 mm/s of ISO 13855 is the other setting.
 
   Measured against his true hands over one cycle with the arm parked (SPEC 17.2 asked
@@ -76,7 +76,7 @@ SPEED_RANK = 3               # for logs: his third fastest cell
 SPEED_HOLD_S = 0.2           # each cell keeps the fastest speed of the last 0.2 s (scene choice)
 PART_M = 0.15                # a moving part of him, a hand and wrist, shares its leading edge's speed (scene choice)
 # ISO 13855's person speed, 2000 mm/s, as reproduced by Marvel and Norcross 2017,
-# Sec. 3, pp. 146 and 148. The constant setting of SPEC.md section 8.6 (a).
+# Sec. 3, pp. 146 and 148. The constant setting of docs/design.md section 8.6 (a).
 ISO_SPEED = 2.0
 SPEED_CAP = ISO_SPEED        # a reading faster than the standard's own worst case is noise, not him
 MEMORY_S = 0.5               # a hidden cell is kept this long at most: the guard has moved the arm by then (scene choice)
@@ -96,9 +96,9 @@ class ViewGrid:
         self.safe = safe
         self.behind = behind
         self.speed_mode = speed_mode
-        # Setting (b) of SPEC.md section 8.6 adds a bounded acceleration term. Its bound
+        # Setting (b) of docs/design.md section 8.6 adds a bounded acceleration term. Its bound
         # has to come from published data on human arm movement, and none has been
-        # opened yet, so it is zero until one is (SPEC.md section 17.2).
+        # opened yet, so it is zero until one is (docs/design.md section 17.2).
         self.accel = accel
         # His speed is read from the parts of him above this height. His feet stand in
         # the floor's depth noise, flicker in and out of the picture and read as 0.4 to

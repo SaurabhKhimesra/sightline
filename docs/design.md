@@ -1,6 +1,6 @@
 # SightLine: scope, aim and rules
 
-Working name. Written 2026-09-17, after CobotSafe v0.1 (the author's earlier project on
+Working name. Written 2026-09-17, after CobotSafe v0.1 (my earlier project on
 what happens when a robot that cannot see people runs a cell). This file is the agreed
 design; every change since is logged in section 19.
 
@@ -8,9 +8,9 @@ design; every change since is logged in section 19.
 
 CobotSafe v0.1 measured what happens when a robot that cannot see people runs a
 fixed program next to one: every row of its headline table fails ISO/TS 15066.
-The industrial people the author showed its video to all said the same thing: a
+The industrial people I showed its video to all said the same thing: a
 real robot should see the person, move around them and keep working. This
-project builds that in simulation and measures it honestly.
+project builds that in simulation and measures it.
 
 ## 2. Aim
 
@@ -156,7 +156,7 @@ worker toward the robot):
   y -0.90 m, 3.25 m above the floor, looking down at 56° across the bench. It must
   see the worker's hands and arms anywhere over the worktop, the head and
   shoulders when the worker leans in, and the whole shared zone. The position was
-  chosen in gate 1 by comparing three mounts (RESULTS_LOG.md): from the front of
+  chosen in gate 1 by comparing three mounts (results.md): from the front of
   the cell the worker's own head and back hide the box, so the camera looks in
   from the side instead (2026-09-18).
 - **Jig:** aluminium nest plate with side stops and two toggle clamps (clamps
@@ -169,7 +169,7 @@ worker toward the robot):
 - **Parts with real holes:** meshes generated in numpy, so the wrist camera sees
   actual holes. Holes are visual only; collision uses simple shapes. Hole
   interiors get a dark material so they read as holes on camera (a rendering
-  choice; MODEL_NOTES says so).
+  choice; notes.md says so).
 - **Screws:** placed geoms shown when picked or driven. A screw on the bit is part
   of the robot for both rules.
 - **Worker:** the dm_control CMU humanoid (CMUHumanoidPositionControlledV2020), the
@@ -219,7 +219,7 @@ or where the box sits in the jig.
 
 ## 8. The robot
 
-### 8.1 Honesty boundary, enforced in code
+### 8.1 What the planner may see, enforced in code
 
 The planner may use only:
 - eyes camera colour and depth images (with noise and delay);
@@ -245,7 +245,7 @@ commands exactly.
   σ_z = 0.0012 + 0.0019 (z − 0.4)² m for surface angles 10° to 60° (their Eq. 3;
   their Eq. 4 adds a term for steeper angles), lateral
   σ_L = 0.8 + 0.035·θ/(π/2 − θ) px (their Eq. 1). Fitted on a Kinect between 0.5
-  and 2.75 m; used here as a stand-in for an RGB-D camera, and MODEL_NOTES says
+  and 2.75 m; used here as a stand-in for an RGB-D camera, and notes.md says
   so. Missing depth at object edges (scene choice).
 - **Wrist camera:** RealSense D405, 640 × 480 colour at 25 Hz, the same as the eyes
   camera (it was 30 Hz).
@@ -333,7 +333,7 @@ the current pose fails or another is clearly better.
     above a margin r_vis;
   - static obstacles (bench, frame, jig, feeder) and self-collision.
 - d_s and r_vis cover delay × person speed, voxel size, depth noise and robot
-  tracking error. Their formula, and every number in it, goes into MODEL_NOTES
+  tracking error. Their formula, and every number in it, goes into notes.md
   with a source or "scene choice".
 - If the QP is infeasible: solve for the rules alone (move away). If that also
   fails, brake to a stop within the acceleration limits. Count every fallback.
@@ -344,11 +344,11 @@ the current pose fails or another is clearly better.
   look-around.
 - **Screw drive, simulated:** when aligned within tolerance (0.5 mm and 2°, scene
   choice), the screw moves down its length over the drive time and becomes part of
-  the box. Threads and torque are not simulated; MODEL_NOTES says so.
+  the box. Threads and torque are not simulated; notes.md says so.
 
 ### 8.6 The monitor
 
-Separate code from the planner, same eyes camera. MODEL_NOTES says a real cell
+Separate code from the planner, same eyes camera. notes.md says a real cell
 would give it its own safety-rated sensor.
 
 - Every 2 ms it computes the protective separation distance in the ISO/TS 15066
@@ -472,7 +472,7 @@ building a gate, state what result would kill it.
    against B4. **Kill test:** if looking around does not cut the time lost against
    B3, the feature is dead and we say so.
 7. **Evaluation** on held-out seeds: every variant, both v_H settings, stress
-   scripts. RESULTS_LOG and a README draft.
+   scripts. results.md and a README draft.
 8. **Video.**
 
 ## 13. The video (after gate 7)
@@ -490,39 +490,22 @@ building a gate, state what result would kill it.
   video does not claim zero.
 - The author's rule: **the video may be produced well but never fabricated.**
 
-## 14. Repo, environment, rules of work
+## 14. Repo and environment
 
-- **Location:** this repository, a ROS 2 workspace of its own, separate from CobotSafe.
-  The judge should not live inside what it judges.
-- **Git:** this repository. No commits unless
-  asked. Never push.
-- **Python:** the packages of `requirements.txt` (MuJoCo 3.13, dm_control 1.0.46, numpy,
-  pyyaml, imageio with ffmpeg) in the interpreter that runs the ROS 2 nodes.
-- **Dependencies:** mujoco, dm_control, numpy, pyyaml, and imageio with ffmpeg for
-  video. Nothing else without asking: no OpenCV, no scipy, no QP library.
-- **Machine:** 7 GB RAM, 12 cores, and other sessions' ROS demos use memory. Run
-  renders and tests one at a time, at most 3 workers. Use MUJOCO_GL=egl.
-- **Menagerie:** a checkout of google-deepmind/mujoco_menagerie, its path in
-  `MUJOCO_MENAGERIE` (default `~/mujoco_menagerie`), for the UR5e model.
-- **Rules of work:**
-  - short, plain language, no em dashes anywhere, code comments included;
-  - push back when something is wrong; pick one option and say why, no menus;
-  - ask before changing the design (this file is the design);
-  - report bad numbers straight;
-  - every number from a standard or paper carries its source, taken from a
-    a document that was opened, never from memory; everything else is marked "scene
-    choice";
-  - never write that anything certifies a cell or replaces physical measurement.
-- **How the work is reviewed** (seen on Blind Spot and CobotSafe): wants the gate
-  before any code; keeps dead claims in the README with the number that killed
-  them; catches two quantities shown side by side that are not the same quantity;
-  expects re-measurement, not argument; wants findings built into the code so they
-  cannot happen again; sanity-checks numbers against physics (CobotSafe's 895 N
-  was caught that way).
-- **Docs to keep from day one:** README.md (what it is and is not, first);
-  MODEL_NOTES.md (every model choice and its source); RESULTS_LOG.md (every result
-  with the rules it was measured under; old numbers kept and marked, never
-  deleted); CHANGELOG.md (every bug, with the test that now catches it).
+- A ROS 2 workspace of its own, separate from CobotSafe: the judge should not live
+  inside what it judges.
+- Python: the packages in `requirements.txt` (MuJoCo 3.13, dm_control 1.0.46, numpy,
+  pyyaml, imageio with ffmpeg), in the interpreter that runs the ROS 2 nodes. No
+  OpenCV, no scipy, no QP library: the QP is 200 lines of numpy and easier to check.
+- The UR5e model comes from a checkout of google-deepmind/mujoco_menagerie; its path
+  goes in `MUJOCO_MENAGERIE` (default `~/mujoco_menagerie`).
+- Rendering is offscreen through EGL (`MUJOCO_GL=egl`). Renders and tests run one at
+  a time on the 7 GB laptop this was built on.
+- House rules for the documents: every number taken from a standard or a paper
+  carries its source, from a document actually opened; everything else is marked as
+  a scene choice; nothing claims to certify a cell or to replace a physical
+  measurement; old numbers are kept and marked superseded, never deleted; every bug
+  gets the test that catches it (CHANGELOG.md).
 
 ## 15. Known risks
 
@@ -594,7 +577,7 @@ building a gate, state what result would kill it.
 - Design-time visibility is measured by ray casting to the worker's surface, which
   names the blocker. The R2 judge still uses rendered segmentation (section 4).
 
-**2026-09-18, built during gates 2 and 3. Built on the way, open to review**
+**2026-09-18, built during gates 2 and 3**
 - The worker takes two side steps to the parts rack during his cycle: the totes are
   0.82 to 0.96 m from his shoulder and his arm reaches 0.77 m, so he cannot work the
   rack from the bench (section 7).
@@ -620,7 +603,7 @@ building a gate, state what result would kill it.
   rack's own shelves. Move the rack, lower it, add a second camera, or let the robot
   hold while he is in there. Holding is the default under our own rule (section 8.3).
 
-**2026-09-18, built during gate 4. Built on the way, open to review**
+**2026-09-18, built during gate 4**
 - The depth noise model is held flat past the 2.75 m Nguyen et al. fitted it over,
   and the depth image is cut off at 4 m (section 8.2). Extrapolating it made the far
   floor noisier than the background test could tolerate.
@@ -678,7 +661,7 @@ building a gate, state what result would kill it.
   under the rules; the video may show it well but never fake it. So his tasks are
   re-ordered the way a line is balanced (section 7): the rail screws while he clips
   blocks on the next rail 40 cm from the jig and then fetches the cover; the cover
-  screws while he finishes that rail. His order is a scene choice, and RESULTS_LOG
+  screws while he finishes that rail. His order is a scene choice, and results.md
   says it was chosen for this.
 - The jig gives four signals: rail pressed in, cover placed (which ends the rail
   screws, they are under it), clamps closed, clamps opened (which ends the cover
@@ -687,7 +670,7 @@ building a gate, state what result would kill it.
   empty jig.
 - The prep area moves 15 cm further from the jig, to x = -0.55 m: at -0.40 m his
   upper arm was 17 to 25 cm from the robot's wrist at a rail screw, inside the
-  planner's margin (section 6, MODEL_NOTES).
+  planner's margin (section 6, notes.md).
 - The parts rack moves 30 cm toward the worker's side (section 6): against the
   bench's left end its far totes were reachable only from inside the bench, where the
   script had him standing since gate 2. He waits with his hands at his sides, not on
@@ -703,7 +686,7 @@ building a gate, state what result would kill it.
   cell frame included, with the cost that matters now added: how often the robot's
   work sits on the camera's lines of sight to him. Gate 1's search counted only how
   much of him each mount sees.
-- **Hardware path, for the record (the point, 2026-09-18):** the planner takes
+- **Hardware path (2026-09-18):** the planner takes
   a `SensorFrame` in and a joint velocity out every 10 ms, and the grid takes a depth
   image in every 40 ms. On hardware each becomes a ROS 2 node: the depth image from
   the RealSense driver, the joint state and velocity command through the UR ROS 2
@@ -722,7 +705,7 @@ building a gate, state what result would kill it.
   rviz2, `sdformat-mjcf`, `ros_gz_bridge`, `ur_description`.
 - **Stage 1, done 2026-09-19:** the cell (MuJoCo, the worker, the eyes camera, the jig,
   the judge) and the planner (B4) are two ROS 2 nodes in lockstep on sim time
-  (MODEL_NOTES "The planner live on ROS 2"). The lockstep is a decision: the run
+  (notes.md "The planner live on ROS 2"). The lockstep is a decision: the run
   must not depend on the machine's speed, so the cell waits for each command and
   the planner for each picture. Parity with the in-process runner is exact. The
   judge stays with the truth, in the cell.
@@ -737,7 +720,7 @@ building a gate, state what result would kill it.
 - Moves are long enough that his hands stay at gate 2's pace (1.3 m/s at most); the
   first version of the new moves reached 8.9 m/s.
 
-**2026-09-18, built during gate 5. Built on the way, open to review**
+**2026-09-18, built during gate 5**
 - Each part of him grows by its own measured speed, not by his fastest part's. With
   one number for all of him, parts coming into view at the rack read as 2.4 to 2.7
   m/s while his hands moved at 0.03 to 0.7 m/s, and the margin round every part of

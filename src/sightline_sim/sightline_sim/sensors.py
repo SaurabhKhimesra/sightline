@@ -4,7 +4,7 @@ The eyes camera is a RealSense D455 stand-in: 640 x 480 colour and depth at 25 H
 one frame late, with depth noise and missing depth at edges. The wrist camera is a
 D405 stand-in: colour only.
 
-Depth noise follows Nguyen, Izadi and Lovell 2012, as SPEC.md section 8.2 sets out:
+Depth noise follows Nguyen, Izadi and Lovell 2012, as docs/design.md section 8.2 sets out:
 axial sigma_z = 0.0012 + 0.0019 (z - 0.4)^2 m (their Eq. 3, for surface angles 10 to
 60 degrees), lateral sigma_L = 0.8 + 0.035 theta / (pi/2 - theta) px (their Eq. 1).
 It was fitted on a Kinect between 0.5 and 2.75 m and is used here as a stand-in for

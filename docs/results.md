@@ -57,7 +57,7 @@ Share of each hand's surface, and of the head and arms:
 - The old top-down mount was measured in the same three hard poses and is not
   better: leaning in to look gives 6.0 % and 4.5 %. A single overhead camera
   cannot see hands that the worker leans over. The planner has to treat that as
-  unseen space, which SPEC.md section 8.3 already requires.
+  unseen space, which design.md section 8.3 already requires.
 
 **Correction:** the first run reported 0.0 % for the left hand while leaning. That
 was a sampling artefact of a coarser ray grid (every 7th vertex). On the finer
@@ -210,7 +210,7 @@ They are worth recording because the planner has to cope with them, and because
 the speed and separation formula uses a person speed v_H, for which ISO 13855
 gives 2000 mm/s and 1600 mm/s beyond 500 mm and allows v_H to be measured instead
 (Marvel and Norcross 2017, Sec. 3, pp. 146 and 148). We take the measured route,
-decided in SPEC.md section 17.2, and these are the speeds it will measure.
+decided in design.md section 17.2, and these are the speeds it will measure.
 
 **The penetrations are a playback artefact and are not a safety result.** The
 worker is written into place frame by frame with no contact response, so a hand
@@ -274,8 +274,8 @@ with per-seed variation (segment durations ±12 %, stance ±15 mm, lean ±0.02 r
 The robot runs B0: taught positions, no awareness of the person at all. Both are
 played back kinematically, so the robot tracks its own commands exactly and passes
 through whatever is in the way; there is no contact force. The episode is one worker
-cycle. The planner sees only what SPEC.md section 8.1 allows, and the judge measures
-R1 and R2 from the simulator's state (SPEC.md section 4). Raw numbers in
+cycle. The planner sees only what design.md section 8.1 allows, and the judge measures
+R1 and R2 from the simulator's state (design.md section 4). Raw numbers in
 `results/gate3/b0_seed{0,1,2}.yaml`, video for seed 0.
 
 ### Three development seeds
@@ -316,7 +316,7 @@ and the worst single frame hides 1272 pixels of him. The blockages come in a few
 long events rather than flickers: the longest is 6.5 s, which is the robot standing
 over the box driving a screw while the worker works beside it.
 
-**A measurement problem, open.** SPEC.md section 4 says to label a
+**A measurement problem, open.** design.md section 4 says to label a
 violation by putting the robot back one motion cycle, 10 ms, and looking again. For
 contacts that works. For blocked frames it does not: 10 ms is 2.5 mm of arm travel,
 and by the time a 30 Hz camera catches an overlap it is already wider than that, so
@@ -335,7 +335,7 @@ not a planner one, and it is worth saying to a manufacturer up front: the robot 
 not the bottleneck because it is careful, it is the bottleneck because there is one
 of it.
 
-### The wrist camera, honestly
+### The wrist camera
 
 The hole detector in B0 is a centroid of dark pixels in a window around the predicted
 hole. It found a hole in 40 of 120 sampled approach frames, and where it found one it
@@ -395,7 +395,7 @@ person, so a part left on the bench makes the robot cautious rather than confide
 
 **Unseen space is seven times the person.** Behind every person voxel, up to 30 cm of
 space the camera cannot see is treated as occupied, which is the depth space idea of
-Flacco et al. 2012. That is 11286 voxels against 1507. It is the honest consequence of
+Flacco et al. 2012. That is 11286 voxels against 1507. It is the consequence of
 one camera, and gate 5 will show what it costs in room to move.
 
 ### The box
@@ -448,7 +448,7 @@ gate 3 detector.
 
 That is the clearest argument yet for the look-around layer. The sixth axis is free,
 20 or more angles per screw are good, and a planner that does not look throws that
-away. SPEC.md section 8.4 already lists "a clear line from the wrist camera to the
+away. design.md section 8.4 already lists "a clear line from the wrist camera to the
 hole" as one of the checks; gate 6 is where it gets used.
 
 ### Predicting a blocked view before it happens
@@ -473,7 +473,7 @@ should not share one rule, and gate 6 will keep them apart.
 
 - Person found on every frame, 93 % of what the camera could see, 97.6 % of what is
   reported is really him, one frame of delay and 51 ms of compute. **Pass.**
-- Box centre to 6.5 mm and height to 12 mm when the face is on show, and an honest
+- Box centre to 6.5 mm and height to 12 mm when the face is on show, and a
   refusal when it is not. Yaw is not observable and is not used. **Pass, with the
   yaw recorded as a limit of this camera.**
 - Holes detected to 1.7 mm from 17 to 23 of 24 turn angles per screw. **Pass.**
@@ -486,7 +486,7 @@ should not share one rule, and gate 6 will keep them apart.
 
 The cell (MuJoCo, the worker, the eyes camera, the jig, the judge) and the planner
 (B4) ran as two ROS 2 nodes in lockstep on sim time (`sightline_ros/cell_node.py`,
-`sightline_ros/planner_node.py`, MODEL_NOTES "The planner live on ROS 2"). Seed 0, the
+`sightline_ros/planner_node.py`, notes.md "The planner live on ROS 2"). Seed 0, the
 balanced cycle, 80.9 s.
 
 - The judge's result is gate 5's: 6 of 6 screws, 0 contacts, 0 blocked frames,
@@ -510,7 +510,7 @@ balanced cycle, 80.9 s.
   rviz output 6.7), the guard 1.2 ms median / 7.9 p99, the QP 0.38 ms.
 - Files: `results/ros2/stage1/cell_B4_seed0.yaml`, `planner_B4_seed0.yaml`,
   `run_B4_seed0_poses.npz` (the Gazebo replay renders it).
-- Stated plainly: the lockstep makes the run independent of the machine's speed; a
+- the lockstep makes the run independent of the machine's speed; a
   real cell has no lockstep, and the 137 ms picture must come down to the 40 ms
   camera period or run one picture behind before this planner drives hardware.
 
@@ -519,7 +519,7 @@ balanced cycle, 80.9 s.
 The next step was the work run and recorded on ROS 2 tools. The B4 run on the
 balanced cycle (seed 0, 80.9 s) was scored again by the judge in MuJoCo with every
 body pose recorded at 25 Hz, then played into Gazebo Sim frame for frame
-(README "Gazebo and ROS 2", MODEL_NOTES "Gazebo as a second renderer").
+(README "Gazebo and ROS 2", notes.md "Gazebo as a second renderer").
 
 - The re-run reproduced the gate 5 result: 6 of 6 screws, 0 contacts, 0 blocked
   frames, closest approach 96.6 mm, no asks. `results/ros2/run_B4_seed0_poses.npz`.
@@ -535,14 +535,14 @@ body pose recorded at 25 Hz, then played into Gazebo Sim frame for frame
   are in one frame. All three Gazebo videos were rendered again with the two key
   lights casting shadows (the first renders had none): 2023 frames from three cameras
   in 725 s, none missed.
-- Desktop recording, after the author saw the Gazebo window lag: measured 7.6 fps for
+- Desktop recording, after I saw the Gazebo window lag: measured 7.6 fps for
   the Gazebo window against 24.8 for rviz (the GUI rendered on the Intel GPU that
   drives the display; the NVIDIA one only had the headless server). Sending the GUI
   to the NVIDIA GPU made it render fast but read back through X at 1 to 13 fps, so
   `B4_windows_front_seed0.mp4` now has Gazebo's front camera rendered live on the GPU
   during the run (2073 frames, none missing or repeated, 25 fps in every frame of the
   result) beside rviz grabbed at 25 fps, the two aligned on the driver's first frame.
-  The earlier window grabs are superseded; MODEL_NOTES "The desktop recording" has the
+  The earlier window grabs are superseded; notes.md "The desktop recording" has the
   measurements and the three paths that did not work.
 - What the picture is not: the eyes video carries no grid tint (the grid is the
   planner's and is not recorded).
@@ -557,7 +557,7 @@ body pose recorded at 25 Hz, then played into Gazebo Sim frame for frame
 **Supersedes every gate 5 table below for the comparison.** The design decisions after
 the first clamp-cycle results: change the script, not the task, and at least two
 screws must go in while he is visibly working beside the robot, really driven under
-the rules (SPEC section 19). His tasks were re-ordered the way a line is balanced: the
+the rules (design.md section 19). His tasks were re-ordered the way a line is balanced: the
 rail screws while he clips blocks on the next rail 40 cm from the jig and then fetches
 the cover; the cover screws while he finishes that rail and then watches from 30 cm
 back. That order was chosen for this and says so here. The jig gives four signals
@@ -591,7 +591,7 @@ and off the camera's lines of sight to him: a rail screw in 80 % of its 20.4 s w
 (longest stretch 8.4 s, all of it while he clips blocks), a cover screw in 96 % of
 its 29.8 s window. B4 used it.
 
-**Stated plainly:**
+**Caveats:**
 - One seed. The held-out seeds and the constant 2000 mm/s speed setting are gate 7.
 - The 97 mm closest approach is at 43.7 s, while he fitted the end stops at the prep
   area: the planner backed the arm to park because of a one-frame phantom cell near
@@ -616,7 +616,7 @@ its 29.8 s window. B4 used it.
 
 **Supersedes the next two sections for the comparison.** The jig's clamps now hold the
 cover and he works elsewhere while the robot screws (a design decision); his script
-was corrected with it (SPEC section 19, CHANGELOG). Seed 0, one cycle of 69.8 s, 25 Hz,
+was corrected with it (design.md section 19, CHANGELOG). Seed 0, one cycle of 69.8 s, 25 Hz,
 the same limits for every variant. Raw numbers in `results/gate5/B{0,2,3,4}_seed0.yaml`.
 
 | | B0, rules off | B2, R1 dampers | B3, R1 and R2 dampers | B4, the camera grid |
@@ -669,7 +669,7 @@ direction in which it sees him off limits from the camera out to 15 cm behind hi
 with a margin of 10 cm plus the size of that part of the arm plus how far that part
 of him could have moved since the picture. The grid is rebuilt with every picture,
 every 40 ms, and every 10 ms the arm's next moves, 63 points on it, are checked
-against it (MODEL_NOTES, the camera grid and the guard). It keeps both rules with
+against it (notes.md, the camera grid and the guard). It keeps both rules with
 more room than the dampers did: never closer than 81 mm, never in the way of the
 camera, and its checks cost a fifth of B3's.
 
@@ -690,7 +690,7 @@ camera, and its checks cost a fifth of B3's.
   upper arm, which no motion of the arm can take away.
 
 **Measured on the way**, one cycle with the arm parked, against his true hands
-(SPEC 17.2 required this before the measured speed may lead): the grid's speed at
+(design.md 17.2 required this before the measured speed may lead): the grid's speed at
 his hands reads 0.19 m/s above the truth at the median and 1.24 at the 95th
 percentile; still hands read 0.26 m/s. It is below the hand's true peak in 10 % of
 pictures, by up to 0.40 m/s, the lag of any speed read from past pictures while a
@@ -721,16 +721,16 @@ hole, and every way of reaching a cover hole brings some part of the arm within 
 of him or into the camera's view of him. The rail screws have one stretch long
 enough for about one screw. B4's 0 of 6 is close to the bound, not far from it.
 
-**What would change the result** is the cell or the task, and that is the author's
+**What would change the result** is the cell or the task, and that is my
 decision: whether the jig holds the cover so that he works elsewhere while the robot
 screws, where the robot and the feeder stand against the worker and the camera, and
 whether the screwdriver mounts in line with the flange.
 
-## 2026-09-18, gate 5, first honest numbers: the rules work, a fixed order does not
+## 2026-09-18, gate 5, first numbers: the rules work, a fixed order does not
 
 **What would kill this gate:** the rule variants still hitting him when the robot
 moved in, or a cycle so slow the cell is useless. The first did not happen. The
-second did, for B2 and B3 as SPEC defines them, and that is the finding.
+second did, for B2 and B3 as design.md defines them, and that is the finding.
 
 Conditions: seed 0, the gate 3 episode. All three variants are the same controller:
 the same taught poses, the same synchronised joint profile, the same motion layer
@@ -768,7 +768,7 @@ order they were written down. That is exactly what the look-around layer, B4, is
 drive the screw that is clear, choose a turn angle the wrist camera can see through,
 and wait at a stand-off only when nothing is clear. Gate 6.
 
-Also measured, for the record: the per cycle QP takes 7 to 9 ms median and up to
+Also measured: the per cycle QP takes 7 to 9 ms median and up to
 29 ms worst in B3, against a 10 ms cycle. The worst case needs trimming before the
 gate 7 matrix.
 

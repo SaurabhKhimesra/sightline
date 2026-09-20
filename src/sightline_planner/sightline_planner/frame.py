@@ -1,6 +1,6 @@
 """What the planner is allowed to see, and nothing else.
 
-SPEC.md section 8.1: eyes camera colour and depth, wrist camera colour, its own
+docs/design.md section 8.1: eyes camera colour and depth, wrist camera colour, its own
 joint positions and velocities, the static station model, its own robot model, the
 product model (holes relative to the part), and the task state it keeps itself.
 
@@ -32,7 +32,7 @@ class Taught:
     """Static cell knowledge: where the jig holds the part and where the screws are.
 
     The jig is bolted to the bench, so its nominal part pose belongs to the station
-    model. Hole positions are given relative to the part, as SPEC.md section 8.1
+    model. Hole positions are given relative to the part, as docs/design.md section 8.1
     allows. Any difference between the nominal pose and the real one is what the
     wrist camera is for.
     """

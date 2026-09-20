@@ -81,11 +81,11 @@ the drawing). Numbers used:
   ideal range **7 to 50 cm** (Intel product specification page).
 - Eyes camera position: on a pole beside the bench at x 1.15 m, y -0.90 m,
   **3.25 m** above the floor, looking down at **56 deg**. A **scene choice**,
-  picked by comparing three mounts on the same worker pose (RESULTS_LOG.md).
+  picked by comparing three mounts on the same worker pose (results.md).
 - Wrist camera position: **75 mm** from the screw axis, **52 mm** above the bit
   tip, aimed at a point 35 mm below the tip: **scene choice**, set so the nose
   does not hide the hole.
-- **Gap:** no sensor noise or delay yet. SPEC.md section 8.2 fixes the model
+- **Gap:** no sensor noise or delay yet. design.md section 8.2 fixes the model
   (Nguyen, Izadi and Lovell 2012) and it is added in gate 4.
 
 ## Parts
@@ -105,7 +105,7 @@ All **scene choices**, not yet matched to a product:
 - Visibility is measured by ray casting, not by counting pixels: a ray runs from
   the camera to each point of the worker's visible surface (clothing mesh
   vertices, every 7th), and the first geom it meets names the blocker (robot, the
-  worker's own body, or the station). The R2 judge in SPEC.md section 4 still
+  worker's own body, or the station). The R2 judge in design.md section 4 still
   uses rendered segmentation; this is the design-time tool.
 - Reach is measured by damped least squares inverse kinematics on the `tool_tip`
   site from 128 seeds, then a MuJoCo collision check of the robot against the
@@ -128,7 +128,7 @@ All **scene choices**, not yet matched to a product:
   8.5 mm past the tip, so R1 reports a contact slightly **before** the screw
   itself touches. That is the safe direction, and the reach tables count it.
 - The wrist camera has a collision box the size of its housing. R1 covers the arm,
-  the screwdriver, the wrist camera and the screw (SPEC.md section 4).
+  the screwdriver, the wrist camera and the screw (design.md section 4).
 - The enclosure's collision shape is a floor, four 2.8 mm walls and the six screw
   bosses, not a solid block, because the rail screws are driven inside it.
 - The DIN rail is a 160 x 35 x 7.5 mm strip plus one box over the four terminal
@@ -277,7 +277,7 @@ All **scene choices** unless a source is named.
   the parts of him above the worktop minus 0.1 m and in blobs of six cells or more.
   Against his true hands over one parked cycle: still hands read 0.26 m/s median,
   0.48 at p90; moving hands 1.27 times their true speed; below the hand's true peak in
-  10 % of pictures, by up to 0.40 m/s. The acceleration term of SPEC section 8.6 (b)
+  10 % of pictures, by up to 0.40 m/s. The acceleration term of design.md section 8.6 (b)
   is zero until a published bound is found.
 - **What the arm hides:** a cell of him that the arm covers in the next picture is
   kept at its own depth and speed, for 0.5 s at most or until it is seen into again,
@@ -322,7 +322,7 @@ All **scene choices** unless a source is named.
 
 All **scene choices**. The jig's two toggle clamps, on its right side, hold the cover
 (a design decision). His tasks are ordered so that the robot's two screwing windows
-fall while he has work beside it (a design decision, SPEC section 19):
+fall while he has work beside it (a design decision, design.md section 19):
 
 - base and rail in the jig as before (17 s); pressing the rail down is the switch for
   the rail screws;
@@ -461,7 +461,7 @@ at 25 fps; the grab starts before the driver and is trimmed to the driver's firs
 frame. Both halves of the result change on every frame at 25 fps. The GUI is not
 part of the recording any more; it was only ever a viewer of the same scene.
 
-**Limits, plainly.** The Gazebo GUI and rviz show the recorded truth, not the planner's grid.
+**Limits.** The Gazebo GUI and rviz show the recorded truth, not the planner's grid.
 The system's Python packages must come last on the path (rclpy's message modules
 import `em` from there; ahead of the venv they shadow its protobuf, which the Gazebo
 messages need). Processes are stopped by PID; a pattern kill matched a shell's own
@@ -509,7 +509,7 @@ him), the 63 points the guard checks, the hole it is going for, and two picture
 strips with the judge's record and the planner's own numbers. The eyes picture is
 not in the bag (2023 pictures are 1.9 GB); the Gazebo replay shows it.
 
-The hardware path, stated plainly: the planner node takes a depth picture and a
+The hardware path, the planner node takes a depth picture and a
 joint state in and puts a joint velocity out. On a real cell the picture comes from
 the RealSense driver at 30 Hz and the joint state and command go through the UR
 ROS 2 driver at 500 Hz; the lockstep goes, wall time rules, and the 95 ms picture

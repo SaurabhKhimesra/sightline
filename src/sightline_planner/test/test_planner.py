@@ -1,6 +1,6 @@
 """The planner's boundary and its kinematics.
 
-SPEC.md section 8.1: the planner package imports nothing from the simulation or the
+docs/design.md section 8.1: the planner package imports nothing from the simulation or the
 judge, and a test fails if such an import appears.
 """
 

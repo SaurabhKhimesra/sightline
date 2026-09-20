@@ -1,6 +1,6 @@
 """The robot's own code. It may not import the simulation or the judge.
 
-SPEC.md section 8.1 lists what it is allowed to see. A test checks the imports.
+docs/design.md section 8.1 lists what it is allowed to see. A test checks the imports.
 """
 
 from .b0 import B0, Screw
