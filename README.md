@@ -6,9 +6,10 @@ the physics, Gazebo Sim and rviz2 for looking at it.
 
 ![one cycle from the front](docs/media/front.gif)
 
-*One assembly cycle, rendered by Gazebo from a camera facing the worker. The band at
-the top is what the judge recorded. Full videos are under
-[releases](../../releases).*
+*Twelve seconds of one cycle, rendered by Gazebo from a camera facing the worker: rail
+screw 2 goes in while he clips terminal blocks next to the robot. The band at the top
+is what the judge recorded. The full clip is [docs/media/B4_front_gazebo_seed0.mp4](docs/media/B4_front_gazebo_seed0.mp4);
+the other views are under [releases](../../releases).*
 
 ## What it does
 
