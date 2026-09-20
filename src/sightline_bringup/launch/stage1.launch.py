@@ -8,7 +8,9 @@ waits for the planner's command, so the run is the same run at any speed the mac
 manages (docs/notes.md, "The planner live on ROS 2").
 """
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess, OpaqueFunction, SetEnvironmentVariable
+from launch.actions import DeclareLaunchArgument, EmitEvent, ExecuteProcess, OpaqueFunction, RegisterEventHandler, SetEnvironmentVariable
+from launch.event_handlers import OnProcessExit
+from launch.events import Shutdown
 from launch.conditions import IfCondition
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
@@ -27,13 +29,16 @@ def nodes(context):
     seconds = LaunchConfiguration("seconds").perform(context)
     out = LaunchConfiguration("out").perform(context)
     cell_args = ["--seed", seed, "--out", out] + ([] if seconds in ("", "full") else ["--seconds", seconds])
+    cell = Node(package="sightline_ros", executable="cell_node", name="sightline_cell", output="screen", arguments=cell_args)
     return [
         Node(package="sightline_ros", executable="planner_node", name="sightline_planner", output="screen",
              arguments=["--seed", seed, "--out", out]),
-        Node(package="sightline_ros", executable="cell_node", name="sightline_cell", output="screen", arguments=cell_args),
+        cell,
         ExecuteProcess(cmd=["ros2", "bag", "record", "-o", out + "/bag_seed" + seed, "--compression-mode", "file",
                             "--compression-format", "zstd", "--topics"] + BAG_TOPICS,
                        output="log", condition=IfCondition(LaunchConfiguration("bag"))),
+        # the run is over when the cell has written its results: stop the recorder and rviz too
+        RegisterEventHandler(OnProcessExit(target_action=cell, on_exit=[EmitEvent(event=Shutdown(reason="the cycle is over"))])),
     ]
 
 

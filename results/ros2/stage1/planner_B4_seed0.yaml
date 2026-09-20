@@ -4,16 +4,16 @@ seed: 0
 date: '2026-09-19'
 ticks_answered: 8090
 pictures: 2022
-picture_ms_median: 161.1
-picture_ms_max: 510.8
+picture_ms_median: 159.9
+picture_ms_max: 356.3
 picture_parts_ms_median:
-  perceive: 138.1
-  grid: 14.9
-  blind: 7.5
-  rviz: 7.0
-guard_ms_median: 1.2
-guard_ms_p99: 7.94
-qp_ms_median: 0.39
+  perceive: 138.4
+  grid: 14.7
+  blind: 7.4
+  rviz: 6.8
+guard_ms_median: 1.22
+guard_ms_p99: 7.93
+qp_ms_median: 0.38
 guard_verdicts:
   brake: 536
   escape back: 4
@@ -299,9 +299,9 @@ planner_summary:
       escape to standoff: 7
       escape back: 4
       escape brake: 1
-    ms_median: 1.192
-    ms_p99: 7.932
-    ms_max: 13.834
+    ms_median: 1.211
+    ms_p99: 7.923
+    ms_max: 13.917
     points_on_the_arm: 63
   feeder_turn_deg: 0.0
   feeder_arm_behind_jig_m: 0.06

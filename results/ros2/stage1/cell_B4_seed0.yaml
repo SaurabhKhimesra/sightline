@@ -4,12 +4,12 @@ seed: 0
 date: '2026-09-19'
 episode_s: 80.89
 worker_cycle_s: 80.89
-wall_time_s: 488.9
-real_time_factor: 0.165
+wall_time_s: 472.2
+real_time_factor: 0.171
 ticks: 8090
 command_timeouts: 0
-wait_for_command_ms_median: 2.87
-wait_for_command_ms_p99: 170.09
+wait_for_command_ms_median: 2.85
+wait_for_command_ms_p99: 131.5
 screws_driven: 6
 held_by_rules_s: 3.43
 stepped_back_s: 1.22
