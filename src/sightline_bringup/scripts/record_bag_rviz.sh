@@ -17,6 +17,7 @@ rate="${3:-1.0}"
 here="$(cd "$(dirname "$0")" && pwd)"
 py="${SIGHTLINE_PYTHON:-python3}"
 work=$(mktemp -d /tmp/sightline_bagrviz_XXXX)
+share="$(ros2 pkg prefix sightline_bringup)/share/sightline_bringup"
 export ROS_DOMAIN_ID=$(( 60 + RANDOM % 30 ))
 export QT_QPA_PLATFORM=xcb
 export DISPLAY="${DISPLAY:-:0}"
