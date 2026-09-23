@@ -1,7 +1,9 @@
 # Results log
 
 Every result with the conditions it was measured under. Old numbers stay and are
-marked, never deleted.
+marked, never deleted. Gates 1 to 4 and stage 1 are in the order they were run; the
+four gate 5 entries are newest first, each saying what it supersedes. The headline
+table is the balanced cycle, and it is the one the README quotes.
 
 ## 2026-09-18, gate 1: the station
 
@@ -497,7 +499,7 @@ balanced cycle, 80.9 s.
   (`results/ros2/stage1/parity`): robot and worker poses equal to 0.0000 mm, the
   planner's state and the guard's verdict equal in every frame. Over the whole run,
   the recorded poses of all 51 bodies equal gate 5's recording
-  (`results/ros2/run_B4_seed0_poses.npz`) to 0.0 m in all 2023 frames.
+  (`results/ros2/stage1/run_B4_seed0_poses.npz`) to 0.0 m in all 2023 frames.
 - Bag: `results/ros2/stage1/bag_seed0` (mcap, zstd, 38 MB): 53,804 messages on 20
   topics, everything but the pictures. Replayed into rviz at 5.81x (the run's wall
   time spacing) with the cell's sim time on `/clock`: `B4_rviz_seed0.mp4`. The Gazebo
@@ -519,10 +521,10 @@ balanced cycle, 80.9 s.
 The next step was the work run and recorded on ROS 2 tools. The B4 run on the
 balanced cycle (seed 0, 80.9 s) was scored again by the judge in MuJoCo with every
 body pose recorded at 25 Hz, then played into Gazebo Sim frame for frame
-(README "Gazebo and ROS 2", notes.md "Gazebo as a second renderer").
+(README "Run", notes.md "Gazebo as a second renderer").
 
 - The re-run reproduced the gate 5 result: 6 of 6 screws, 0 contacts, 0 blocked
-  frames, closest approach 96.6 mm, no asks. `results/ros2/run_B4_seed0_poses.npz`.
+  frames, closest approach 96.6 mm, no asks. `results/ros2/stage1/run_B4_seed0_poses.npz`.
 - Replay: 2023 frames, all 40 posed bodies per frame, both cameras rendered by Gazebo
   on the GPU at 1280x720 and 960x720, 0 frames missed, 531 s (3.8 frames a second).
 - Videos: `results/ros2/gazebo/B4_hero_gazebo_seed0.mp4` and
@@ -546,7 +548,7 @@ body pose recorded at 25 Hz, then played into Gazebo Sim frame for frame
   measurements and the three paths that did not work.
 - What the picture is not: the eyes video carries no grid tint (the grid is the
   planner's and is not recorded).
-- Desktop recording, `results/ros2/gazebo/B4_windows_seed0.mp4` (2560x760, 92 s):
+- Desktop recording, `results/ros2/gazebo/B4_windows_front_seed0.mp4` (2560x760, 92 s):
   Gazebo's GUI on the hero camera's view and rviz2 side by side, the run played in
   real time (2023 frames in 80.9 s wall, 1 of them more than a frame late). rviz shows the UR5e model on the
   recorded joint angles, the worker as the judge's 47 capsules and spheres, 351
@@ -554,17 +556,20 @@ body pose recorded at 25 Hz, then played into Gazebo Sim frame for frame
   record as a picture strip. Checked by eye at 31 s and at the end.
 
 
+## 2026-09-18, gate 5 on the balanced cycle: six screws, no contact, no blocked frame
+
 **Supersedes every gate 5 table below for the comparison.** The design decisions after
 the first clamp-cycle results: change the script, not the task, and at least two
 screws must go in while he is visibly working beside the robot, really driven under
-the rules (design.md section 19). His tasks were re-ordered the way a line is balanced: the
+the rules (design.md section 18). His tasks were re-ordered the way a line is balanced: the
 rail screws while he clips blocks on the next rail 40 cm from the jig and then fetches
 the cover; the cover screws while he finishes that rail and then watches from 30 cm
 back. That order was chosen for this and says so here. The jig gives four signals
 (rail pressed, cover placed, clamps closed, clamps opened), the rack stands 30 cm
 further toward him, and three faults in his script were fixed on the way (CHANGELOG).
 Seed 0, one cycle of 80.9 s, 25 Hz, the same limits for every variant. Raw numbers in
-`results/gate5/B{0,2,3,4}_seed0.yaml`, the B4 video in `results/gate5/B4_*_seed0.mp4`.
+`results/gate5/B{0,2,3,4}_seed0.yaml` (this run is what those files hold), the B4 video
+in `results/gate5/B4_*_seed0.mp4`.
 
 | | B0, rules off | B2, R1 dampers | B3, R1 and R2 dampers | B4, the camera grid |
 |---|---|---|---|---|
@@ -616,8 +621,9 @@ its 29.8 s window. B4 used it.
 
 **Supersedes the next two sections for the comparison.** The jig's clamps now hold the
 cover and he works elsewhere while the robot screws (a design decision); his script
-was corrected with it (design.md section 19, CHANGELOG). Seed 0, one cycle of 69.8 s, 25 Hz,
-the same limits for every variant. Raw numbers in `results/gate5/B{0,2,3,4}_seed0.yaml`.
+was corrected with it (design.md section 18, CHANGELOG). Seed 0, one cycle of 69.8 s, 25 Hz,
+the same limits for every variant. The raw files under `results/gate5/` were written
+again by the balanced-cycle run above, so the numbers below are only here.
 
 | | B0, rules off | B2, R1 dampers | B3, R1 and R2 dampers | B4, the camera grid |
 |---|---|---|---|---|
@@ -650,7 +656,8 @@ truth at the median. Together that asks for 15 to 25 cm of true clearance.
 **Supersedes the numbers in the next section.** Every arm link in the motion layer,
 B0's clear check and B4 had been a ball at its centre (CHANGELOG, gate 5), and the
 cameras now run at 25 Hz, a design choice. Seed 0, the gate 3 episode, one worker
-cycle of 44.1 s. Raw numbers in `results/gate5/B{0,2,3,4}_seed0.yaml`.
+cycle of 44.1 s. The raw files under `results/gate5/` were written again by the
+balanced-cycle run above, so the numbers below are only here.
 
 | | B0, rules off | B2, R1 dampers | B3, R1 and R2 dampers | B4, the camera grid |
 |---|---|---|---|---|
@@ -737,7 +744,8 @@ the same taught poses, the same synchronised joint profile, the same motion laye
 with the UR5e's joint limits at 90 deg/s and 400 deg/s^2. B0 has the rules off, B2
 adds R1, B3 adds R2. The planner sees only the eyes camera's noisy, one frame late
 depth, its own joints and its own model. The camera is the moved pole (gate 1 note).
-Raw numbers in `results/gate5/B{0,2,3}_seed0.yaml`, video for each.
+The raw files under `results/gate5/` were written again by the balanced-cycle run
+above, so the numbers below are only here.
 
 | | B0, rules off | B2, R1 | B3, R1 and R2 |
 |---|---|---|---|
