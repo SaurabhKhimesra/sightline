@@ -13,9 +13,12 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(visualization_msgs REQUIRED)
 find_package(builtin_interfaces REQUIRED)
 find_package(sightline_planner_cpp REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(yaml-cpp REQUIRED)
 
 add_library(lockstep SHARED src/lockstep.cpp)
 target_include_directories(lockstep PUBLIC
@@ -29,6 +32,17 @@ target_link_libraries(lockstep PUBLIC
   nlohmann_json::nlohmann_json
   sightline_planner_cpp::sightline_planner_cpp)
 
+add_executable(planner_node src/planner_node.cpp)
+target_link_libraries(planner_node PRIVATE
+  lockstep
+  rclcpp::rclcpp
+  ${std_msgs_TARGETS}
+  ${sensor_msgs_TARGETS}
+  ${geometry_msgs_TARGETS}
+  ${visualization_msgs_TARGETS}
+  sightline_planner_cpp::sightline_planner_cpp
+  yaml-cpp)
+
 install(DIRECTORY include/ DESTINATION include)
 install(TARGETS lockstep
   EXPORT export_${PROJECT_NAME}
@@ -36,6 +50,7 @@ install(TARGETS lockstep
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
   INCLUDES DESTINATION include)
+install(TARGETS planner_node DESTINATION lib/${PROJECT_NAME})
 
 ament_export_include_directories(include)
 ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
