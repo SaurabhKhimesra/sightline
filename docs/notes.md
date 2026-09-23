@@ -516,3 +516,43 @@ ROS 2 driver at 500 Hz; the lockstep goes, wall time rules, and the 95 ms pictur
 must come down to 40 ms or run one picture behind. That is the next engineering
 job, not this one.
 
+## The planner in C++
+
+The Python planner is where the algorithms were worked out and it is what the gate
+scripts run. `sightline_planner_cpp` is the same code in C++17 on Eigen and the
+MuJoCo C API: the QP solver, the kinematics, the view grid, the motion layer, the
+guard, the perception and the B0 and B4 task layers, with the same constants, the
+same order of operations and the same comments about why each number is what it is.
+It links no ROS and no simulator, so it is what would go on a real controller.
+`sightline_ros_cpp` wraps it in the lockstep contract the Python node already
+speaks, so either planner drives the cell node over the same topics.
+
+Three things differ from the Python, and none of them is a design change:
+
+- **The robot model comes from a file.** The Python planner calls
+  `station.robot_only_model()`, which builds the model in process. The C++ one takes a
+  `robot_model` parameter and loads an MJCF. `station.export_robot_mjcf` writes that
+  MJCF from the same builder, with the textures as PNG files beside it and the slashes
+  left in the names. The exported model has the same bodies, sites, cameras, mocap
+  parts, collision shapes, joint limits and camera field of view as the one built in
+  process.
+- **The eight sample poses the guard uses come from a different draw.** The guard
+  decides which points on the arm can move at all, and which never leave the base's
+  axis by more than 20 cm, by sampling eight random joint vectors. The Python draws
+  them from numpy's PCG64 with seed 0; the C++ draws them from `mt19937_64` with seed
+  0. Both are fixed, so both are the same on every run, and the two tests they feed
+  (a point moves more than 1 mm; a point stays within 20 cm of the axis) are coarse
+  enough that which eight poses they are does not matter. Checked on the exported
+  model: both give 63 points on the arm, 58 of them moving, 8 of those rooted on the
+  base's axis, and the same 4.009591 m of radii over the 63.
+- **Arithmetic is double throughout.** The view grid's speed measurement casts its
+  points to float32 in the Python, for speed on large arrays. The C++ keeps them in
+  double. The port is therefore close to the Python but not bit-identical, and it has
+  not yet been run against it over a full cycle.
+
+Two pieces of MuJoCo's rendering had to be copied exactly, and both are recorded in
+the changelog for 2026-09-20: the offscreen context is made on an EGL device rather
+than `EGL_DEFAULT_DISPLAY` and left surfaceless, and `readDepthMap` is set to
+`mjDEPTH_ZEROFAR` so the reversed depth coefficients undo what the buffer holds. With
+both right, the C++ known world render matches the Python renderer on the same model
+and camera to four decimal places.
