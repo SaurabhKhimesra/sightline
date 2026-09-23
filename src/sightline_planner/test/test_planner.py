@@ -19,13 +19,15 @@ import numpy as np  # noqa: E402
 from sightline_planner import B0, SensorFrame, Taught, ToolKinematics  # noqa: E402
 from sightline_planner.b0 import BIT_DOWN, rot_z  # noqa: E402
 
-PLANNER = Path(__file__).resolve().parents[1] / "src" / "sightline" / "planner"
-FORBIDDEN = ("sightline_sim", "sightline_ros", "..sim", "..judge")
+PLANNER = Path(__file__).resolve().parents[1] / "sightline_planner"
+FORBIDDEN = ("sightline_sim", "sightline_ros")
 
 
 class TestHonestyBoundary(unittest.TestCase):
     def test_the_planner_imports_neither_the_simulation_nor_the_judge(self):
-        for path in sorted(PLANNER.glob("*.py")):
+        paths = sorted(PLANNER.glob("*.py"))
+        self.assertTrue(paths, f"no planner sources at {PLANNER}")
+        for path in paths:
             tree = ast.parse(path.read_text())
             for node in ast.walk(tree):
                 if isinstance(node, ast.Import):
