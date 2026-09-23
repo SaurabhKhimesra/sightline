@@ -50,9 +50,11 @@ itself between him and the camera. Three of the six go in while he works 40 cm a
 from the arm, which is what ordering the tasks around the robot's windows was for,
 and the whole decision costs 1 ms of the 10 ms cycle.
 
-Running the planner as a ROS 2 node instead of in-process reproduces the run to the
-millimetre over all 2023 frames. One 81 s cycle in simulation; every run, every gate
-and the full set of numbers are in `docs/results.md`.
+Running the Python planner as two ROS 2 nodes instead of in-process gives the same
+run: every body's pose matches the in-process recording over all 2023 frames, and the
+planner's state and the guard's verdict were checked frame by frame over the first
+6 s. One 81 s cycle in simulation, one seed; every run, every gate and the full set of
+numbers are in `docs/results.md`.
 
 ## Layout
 
@@ -111,7 +113,10 @@ ros2 launch sightline_bringup stage1.launch.py seed:=0 seconds:=full rviz:=true 
 
 `planner:=cpp` swaps in the C++ planner. It plans on a model loaded from a file
 rather than one built in process, so the launch writes the model out first with
-`station.export_robot_mjcf`; it is the same model `robot_only_model` builds.
+`station.export_robot_mjcf`; it is the same model `robot_only_model` builds. The
+numbers above are the Python planner's. The C++ port matches it piece by piece and
+its render to four decimal places, but it has not yet been run against it over a
+whole cycle; the three places the two are allowed to differ are in `docs/notes.md`.
 
 ```bash
 ros2 launch sightline_bringup stage1.launch.py planner:=cpp
