@@ -1,12 +1,18 @@
 """Stage 1: the cell and the planner as two nodes in lockstep on sim time.
 
     ros2 launch sightline_bringup stage1.launch.py seed:=0 seconds:=full rviz:=true bag:=true
+    ros2 launch sightline_bringup stage1.launch.py planner:=cpp
+
+planner:=cpp runs the C++ planner (sightline_ros_cpp) in place of the Python one. It
+plans on the same model, which is written out to the results folder first.
 
 Run from the workspace root: the nodes write their results under results/ros2/stage1.
 The cell waits for the planner's ready message before its first tick, and every tick
 waits for the planner's command, so the run is the same run at any speed the machine
 manages (docs/notes.md, "The planner live on ROS 2").
 """
+from pathlib import Path
+
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, EmitEvent, ExecuteProcess, OpaqueFunction, RegisterEventHandler, SetEnvironmentVariable
 from launch.event_handlers import OnProcessExit
@@ -24,15 +30,32 @@ BAG_TOPICS = ["/joint_states", "/sightline/tick", "/sightline/cmd", "/sightline/
               "/sightline/cell/taught", "/sightline/planner/ready"]
 
 
+def planner_node(seed, out, which):
+    """The planner, in whichever language was asked for.
+
+    The C++ one loads its robot model from a file instead of building it in process,
+    so the model the Python planner holds is written out beside the results first. It
+    is the same model: station.export_robot_mjcf writes what robot_only_model builds.
+    """
+    if which == "python":
+        return Node(package="sightline_ros", executable="planner_node", name="sightline_planner",
+                    output="screen", arguments=["--seed", seed, "--out", out])
+    from sightline_sim.station import export_robot_mjcf
+    model = export_robot_mjcf(Path(out) / "model")
+    return Node(package="sightline_ros_cpp", executable="planner_node", name="sightline_planner",
+                output="screen",
+                parameters=[{"seed": int(seed), "out": out, "robot_model": str(model)}])
+
+
 def nodes(context):
     seed = LaunchConfiguration("seed").perform(context)
     seconds = LaunchConfiguration("seconds").perform(context)
     out = LaunchConfiguration("out").perform(context)
+    which = LaunchConfiguration("planner").perform(context)
     cell_args = ["--seed", seed, "--out", out] + ([] if seconds in ("", "full") else ["--seconds", seconds])
     cell = Node(package="sightline_ros", executable="cell_node", name="sightline_cell", output="screen", arguments=cell_args)
     return [
-        Node(package="sightline_ros", executable="planner_node", name="sightline_planner", output="screen",
-             arguments=["--seed", seed, "--out", out]),
+        planner_node(seed, out, which),
         cell,
         ExecuteProcess(cmd=["ros2", "bag", "record", "-o", out + "/bag_seed" + seed, "--compression-mode", "file",
                             "--compression-format", "zstd", "--topics"] + BAG_TOPICS,
@@ -52,6 +75,7 @@ def generate_launch_description():
         DeclareLaunchArgument("out", default_value="results/ros2/stage1", description="where the results go"),
         DeclareLaunchArgument("rviz", default_value="false", description="open rviz on the run"),
         DeclareLaunchArgument("bag", default_value="false", description="record the small topics to a bag"),
+        DeclareLaunchArgument("planner", default_value="python", description="python or cpp"),
         SetEnvironmentVariable("MUJOCO_GL", "egl"),
         OpaqueFunction(function=nodes),
         Node(package="robot_state_publisher", executable="robot_state_publisher", output="log",
