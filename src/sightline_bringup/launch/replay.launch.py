@@ -1,10 +1,10 @@
 """Play a recorded run into the Gazebo replay world and ROS 2 in real time, with the
 Gazebo GUI and rviz if asked.
 
-    ros2 launch sightline_bringup replay.launch.py poses:=results/ros2/run_B4_seed0_poses.npz gui:=true rviz:=true
+    ros2 launch sightline_bringup replay.launch.py poses:=results/ros2/stage1/run_B4_seed0_poses.npz gui:=true rviz:=true
 
-The world comes from `ros2 run sightline_sim make_replay_world` (README, "Gazebo and
-ROS 2"). Every Gazebo process here shares one GZ_PARTITION so other Gazebo sessions on
+The world comes from `ros2 run sightline_sim make_replay_world` (README, "Run").
+Every Gazebo process here shares one GZ_PARTITION so other Gazebo sessions on
 the machine stay apart; the server renders on the GPU named by
 __EGL_VENDOR_LIBRARY_FILENAMES when that is set in the environment.
 """
