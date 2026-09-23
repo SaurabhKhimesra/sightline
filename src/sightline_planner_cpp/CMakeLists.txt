@@ -17,7 +17,8 @@ find_package(MuJoCo REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
   src/calibration.cpp
-  src/qp.cpp)
+  src/qp.cpp
+  src/kin.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
