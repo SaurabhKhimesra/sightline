@@ -10,7 +10,8 @@
   <depend>python3-numpy</depend>
   <depend>python3-yaml</depend>
   <depend>sightline_planner</depend>
-
+  <!-- mujoco, dm_control and imageio have no rosdep keys; they are in
+       requirements.txt, installed into the interpreter that runs the nodes. -->
 
   <test_depend>python3-pytest</test_depend>
 

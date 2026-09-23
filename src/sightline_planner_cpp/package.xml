@@ -11,7 +11,9 @@
 
   <depend>eigen</depend>
   <!-- MuJoCo has no rosdep key. Point MUJOCO_DIR at an install or at the Python
-       wheel's package directory, which ships the C headers and libmujoco.so. -->
+       wheel's package directory, which ships the C headers and libmujoco.so.
+       The offscreen render needs EGL as well: libegl-dev on Ubuntu, in the apt
+       line in the README. Neither is resolved by rosdep. -->
 
   <test_depend>ament_cmake_gtest</test_depend>
 

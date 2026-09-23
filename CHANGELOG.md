@@ -2,6 +2,39 @@
 
 Every bug found, and the test that now catches it. Newest first.
 
+## 2026-09-23
+
+### The test that guards the planner's boundary was reading an empty directory
+
+- **`test_the_planner_imports_neither_the_simulation_nor_the_judge` passed without
+  opening a file.** It globbed `parents[1] / "src" / "sightline" / "planner"`, the
+  layout from before the code was split into ROS 2 packages. Under
+  `src/sightline_planner/test/` that resolves to
+  `src/sightline_planner/src/sightline/planner`, which does not exist, so the glob
+  returned nothing and the loop body never ran. The claim it is there to defend is in
+  the README and in design.md section 8.1, and nothing was checking it. It now reads
+  `parents[1] / "sightline_planner"` and fails if the glob comes back empty. All 11
+  planner sources pass it: the boundary did hold, it was just not being tested.
+  `FORBIDDEN` also dropped `..sim` and `..judge`, relative imports that only existed
+  in the old layout.
+- **Stale pointers, found by following them.** `requirements.txt` sent the reader to a
+  README section called "Setup" and three files to one called "Gazebo and ROS 2";
+  neither has existed since the README was rewritten. results.md had the recorded
+  poses at `results/ros2/` where they are written to `results/ros2/stage1/`, and named
+  the desktop recording `B4_windows_seed0.mp4` where the file and the release asset
+  are `B4_windows_front_seed0.mp4`.
+- **design.md described a judge this repo does not have.** Section 10 said ground
+  truth came from CobotSafe, installed alongside and imported. The judge is
+  `sightline_sim/judge`, written here, and it measures no contact force, which
+  sections 4 and 9 also claimed it did. Section 10 now says what the code does and
+  what it keeps from CobotSafe, which is the definition of who moved in. The file's
+  sections also ran 17, 19, 18; they now run in order.
+- **The three superseded gate 5 entries pointed at raw files the balanced-cycle run
+  had since overwritten.** Each one sent the reader to `results/gate5/B*_seed0.yaml`
+  for numbers those files no longer hold. They now say so, and the balanced-cycle
+  entry, the one the README quotes, has a heading of its own instead of starting
+  mid-page under the Gazebo section.
+
 ## 2026-09-20
 
 ### The planner ported to C++
@@ -267,7 +300,7 @@ Found while building B4 on the camera grid (the grid algorithm, 25 Hz):
 - **The robot could have driven a rail screw through the cover.** The jig signalled
   "cover ready" only when the clamps closed, 2 s after the cover was placed, and
   nothing told the planner the rail screws were under it. The jig now signals the
-  cover placed and the clamps opened as well (design.md section 19).
+  cover placed and the clamps opened as well (design.md section 18).
 - **Dropping the hands to his sides by "hang" swung the right hand over the jig** at
   1.9 m/s: the joint blend from reaching to the hanging pose. Explicit targets where
   the hands hang, 2 cm up; a target 6 cm higher or 4 cm further forward missed by 25
@@ -459,6 +492,6 @@ Found while building B4 on the camera grid (the grid algorithm, 25 Hz):
   triangulation produced a self-intersecting remnant and raised. Fixed by
   blocking an ear when a vertex is inside it or on its diagonal. Test: the T-slot
   profile triangulates (`test_geometry.py::test_tslot_profile_triangulates`).
-- **Three scene builds in one process ran the machine out of memory** (7 GB, 
+- **Three scene builds in one process ran the machine out of memory** (7 GB,
   shared with other work). Not a code bug: scripts now build one scene per
   process, and `eyes_options.py` takes the variant names as an argument.

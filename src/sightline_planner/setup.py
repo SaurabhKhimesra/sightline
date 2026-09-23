@@ -16,9 +16,4 @@ setup(
     maintainer_email="learningkhimesra@gmail.com",
     description="The robot's own planner: the overhead camera's view as a grid of off-limits directions, a guard that checks the arm against it every 10 ms, and the task that chooses which screw to drive. Imports nothing from the simulation.",
     license="MIT",
-    entry_points={
-        "console_scripts": [
-
-        ],
-    },
 )
