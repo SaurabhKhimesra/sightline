@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>sightline_planner_cpp</name>
+  <version>0.1.0</version>
+  <description>The robot's own planner in C++: the overhead camera's view as a grid of off-limits directions, a guard that checks the arm against it every 10 ms, and the task that chooses which screw to drive. Imports nothing from the simulation.</description>
+  <maintainer email="learningkhimesra@gmail.com">Saurabh Khimesra</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>eigen</depend>
+  <!-- MuJoCo has no rosdep key. Point MUJOCO_DIR at an install or at the Python
+       wheel's package directory, which ships the C headers and libmujoco.so. -->
+
+  <test_depend>ament_cmake_gtest</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
