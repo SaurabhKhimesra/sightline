@@ -249,7 +249,7 @@ the optimality conditions (1e-13) and against scipy's SLSQP (1e-10).
 The grid algorithm: the camera's view as a grid of directions, the person's
 directions off limits from the camera out to just behind him, rebuilt with every
 picture, and the arm checked against it every 10 ms. The same idea as the depth space
-approach of Flacco et al. 2012 (section 18, method reference; no numbers taken).
+approach of Flacco et al. 2012 (section 19, method reference; no numbers taken).
 All **scene choices** unless a source is named.
 
 - **Cells** 4 x 4 pixels, about 2.3 cm at 3.2 m. A cell holds him if two of its
@@ -322,7 +322,7 @@ All **scene choices** unless a source is named.
 
 All **scene choices**. The jig's two toggle clamps, on its right side, hold the cover
 (a design decision). His tasks are ordered so that the robot's two screwing windows
-fall while he has work beside it (a design decision, design.md section 19):
+fall while he has work beside it (a design decision, design.md section 18):
 
 - base and rail in the jig as before (17 s); pressing the rail down is the switch for
   the rail screws;
@@ -424,8 +424,9 @@ in real time: poses into Gazebo as above without waiting for pictures, and to RO
 `sightline_ros/test/test_ros2.py`), `/tf`, the worker as the judge's 47 capsules and spheres, the
 station's boxes and cylinders (sent again every 2 s for a late rviz), and the judge's
 words as a text marker; 3 ms a frame on the ROS side, the messages built once and
-re-posed. The windows are captured one by one with x11grab through XWayland, the
-locrec pattern, and the Gazebo GUI opens on `results/ros2/gazebo/gazebo_gui.config`,
+re-posed. The windows are captured one by one with x11grab through XWayland, the pattern from
+locrec, an earlier screen-recording tool of mine, and the Gazebo GUI opens on
+`results/ros2/gazebo/gazebo_gui.config`,
 written by the world builder with the hero camera's pose.
 
 **The front camera and the shadows (2026-09-19, a request).** The hero camera

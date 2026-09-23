@@ -1,8 +1,9 @@
 # SightLine: scope, aim and rules
 
-Working name. Written 2026-09-17, after CobotSafe v0.1 (my earlier project on
-what happens when a robot that cannot see people runs a cell). This file is the agreed
-design; every change since is logged in section 19.
+Written 2026-09-17, after CobotSafe v0.1, my earlier project on what happens when a
+robot that cannot see people runs a cell. This file is the design as it was settled
+before any code; every change since is logged in section 18, and the numbers that
+came out are in results.md.
 
 ## 1. Why
 
@@ -34,8 +35,7 @@ blocks its own view of them, and keeps screwing.*
 It is:
 - a simulation study of vision-based, real-time, person-aware motion planning on
   a real manufacturing task;
-- measured by an independent judge (CobotSafe) against ground truth the planner
-  never sees;
+- measured by an independent judge against ground truth the planner never sees;
 - a demo video cut from real closed-loop runs.
 
 It is not:
@@ -59,9 +59,8 @@ It is not:
   back where it was one motion cycle (10 ms) earlier and keep the person where
   they are now. If the contact is still there, the person moved in. Otherwise the
   robot did.
-- A contact's force is measured the CobotSafe way (section 10) and reported
-  against the ISO/TS 15066 limits for information. The run has broken R1 whatever
-  the force.
+- Force is not measured (section 10). The run has broken R1 whatever the force, so
+  what is reported is the count, the depth and the closest approach.
 - **Planner:** hard constraints in every motion cycle (section 8.5) and an
   independent separation monitor (section 8.6).
 
@@ -77,7 +76,7 @@ It is not:
   once it is wider than that, so the 10 ms test called 15 of 16 events the person's
   doing when the video showed the robot arriving. Both labels are still recorded.
   The frame was 33 ms at 30 Hz and is 40 ms since the cameras went to 25 Hz
-  (section 19, gate 5).
+  (section 18, gate 5).
 - Only the camera's own view counts. Body parts the camera cannot see anyway (legs
   under the bench, a hand behind the worker's own body) are outside R2.
 - **Planner:** hard constraints keep every robot link out of the sight lines from
@@ -212,7 +211,7 @@ or where the box sits in the jig.
   lifting the box while the robot approaches a screw.
 - Reported per episode: peak hand speed and peak hand acceleration.
 - **The jig's toggle clamps hold the cover while the robot screws it** (decided with
-  decided 2026-09-18, section 19). He closes the clamps, which is the jig switch the
+  decided 2026-09-18, section 18). He closes the clamps, which is the jig switch the
   robot starts the cover screws on, preps the next rail at the prep area, then waits
   upright at the bench until the screws are in and opens the clamps. The cycle is
   about 70 s instead of 44 s: four cover screws take the robot about 22 s.
@@ -385,9 +384,8 @@ would give it its own safety-rated sensor.
 
 ## 9. What gets measured
 
-- **Rules:** R1 contacts (count, who moved in, person speed, force from the
-  judge), minimum robot to person distance; R2 blocked frames and pixels (count,
-  who moved in).
+- **Rules:** R1 contacts (count, who moved in, person speed, depth), minimum robot
+  to person distance; R2 blocked frames and pixels (count, who moved in).
 - **Work:** boxes done, cycle time per box, idle share, time per mode, protective
   stops, QP fallbacks.
 - **Look around:** blocking events and what resolved each (turn, posture, other
@@ -401,19 +399,21 @@ would give it its own safety-rated sensor.
 - **Compute:** per-cycle compute times.
 - **Worker:** peak hand speed and acceleration per episode.
 
-## 10. The judge: CobotSafe
+## 10. The judge
 
-- Ground truth for R1 and R2 comes from a separate evaluation package that the
-  planner cannot import.
-- A contact is measured the CobotSafe way: the latest state with no robot-person
-  overlap anywhere, reruns with the person held still (free root and welded root)
-  until every contact ends, and the plausibility check against what the arm can
-  hold.
-- CobotSafe's reruns replay its waypoint program, so this needs a small adapter
-  that replays the logged joint commands instead. Install CobotSafe into the same
-  environment and import it. **Do not edit CobotSafe without asking.**
-- Force limits come from CobotSafe's data files with their sources, as in v0.1.
-  They are for information only: a contact breaks R1 at any force.
+- Ground truth for R1 and R2 comes from `sightline_sim/judge`, which reads the
+  simulator's own state. The planner cannot import it, and a test fails if it does
+  (section 8.1).
+- It is written here rather than taken from CobotSafe. CobotSafe scores a fixed
+  waypoint program and reruns it to settle each contact; this planner chooses its
+  own motion every cycle, so there is nothing to replay. What is kept from it is the
+  definition of who moved in, section 4: rewind the robot one motion cycle, leave the
+  person, and look again.
+- Contact force is not measured. CobotSafe reported it against the ISO/TS 15066
+  limits because its whole question was how hard the robot hits; here a contact
+  breaks R1 at any force, so the count, the depth and the closest approach are what
+  the judge records. Adding force would need the contact model tuned for it, which
+  this cell's geometry does not carry.
 
 ## 11. Experiments
 
@@ -492,8 +492,8 @@ building a gate, state what result would kill it.
 
 ## 14. Repo and environment
 
-- A ROS 2 workspace of its own, separate from CobotSafe: the judge should not live
-  inside what it judges.
+- A ROS 2 workspace of its own. The judge is a package here, not part of the planner,
+  and the planner cannot import it: the thing being judged should not reach the judge.
 - Python: the packages in `requirements.txt` (MuJoCo 3.13, dm_control 1.0.46, numpy,
   pyyaml, imageio with ffmpeg), in the interpreter that runs the ROS 2 nodes. No
   OpenCV, no scipy, no QP library: the QP is 200 lines of numpy and easier to check.
@@ -525,9 +525,10 @@ building a gate, state what result would kill it.
   and the judge adds two segmentation renders.
 - The screw drive is not physical.
 
-## 16. Changed from what was said earlier in the chat
+## 16. Changed from the first draft of this file
 
-- Blind Spot's FeatureGuard is out of scope for now. The final alignment uses one
+- The FeatureGuard from Blind Spot, an earlier visual-servoing project of mine, is
+  out of scope for now. The final alignment uses one
   hole (two image features), where its degeneracy test does not apply. Blind Spot
   also measured its area signal firing on a healthy oblique view (70°), and an
   off-axis wrist camera always sees the hole at an angle, so it would need
@@ -543,13 +544,10 @@ building a gate, state what result would kill it.
    at 30 Hz quantise speed in 600 mm/s steps, and Marvel and Norcross (p. 148)
    warn that a few mm of position noise adds hundreds of mm/s. Setting (b) also
    still needs a published source for its acceleration bound.
-3. Videos in git or as release files, for both projects. I recommend release
-   files.
-4. CobotSafe v0.1 is still unpushed.
-5. The CobotSafe v0.1 video's search-grid curve still uses pre-fix search 5 scores
-   (its 2.85 overstates). Fix that before the video is published.
+3. Videos as release files rather than in git: the run is 9 MB a camera.
+   Decided 2026-09-19, and v0.1's videos are attached to the tag.
 
-## 19. Changes agreed after the scope was written
+## 18. Changes made after the scope was written
 
 **2026-09-17, decisions**
 - In the worst case the robot holds. Holding is the fallback, never a reason to
@@ -698,7 +696,7 @@ building a gate, state what result would kill it.
   ROS 2, Gazebo, rviz and record from there." Done first as a replay: the run the
   judge scores in MuJoCo is recorded (every body pose at 25 Hz) and played into
   Gazebo Sim and ROS 2 frame for frame, for the Gazebo-rendered videos and the desktop
-  recording of Gazebo's GUI and rviz2 (README "Gazebo and ROS 2"). MuJoCo stays the
+  recording of Gazebo's GUI and rviz2 (README "Run"). MuJoCo stays the
   simulator and the judge; Gazebo renders. The live version, the planner and the
   simulator as ROS 2 nodes talking over topics, is what the hardware path above
   needs anyway. Tools added for it, the request: ROS 2 Lyrical, Gazebo 10,
@@ -745,7 +743,7 @@ building a gate, state what result would kill it.
 - The measured person speed is capped at the ISO 2000 mm/s: a faster reading is
   noise, and the constant setting uses that value anyway (section 8.6 (b)).
 
-## 18. Sources opened for this file (2026-09-17)
+## 19. Sources opened for this file (2026-09-17)
 
 - J. A. Marvel and R. Norcross, "Implementing speed and separation monitoring in
   collaborative robot workcells", Robotics and Computer-Integrated Manufacturing
