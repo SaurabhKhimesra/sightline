@@ -2,6 +2,40 @@
 
 Every bug found, and the test that now catches it. Newest first.
 
+## 2026-09-20
+
+### The planner ported to C++
+
+- **`sightline_planner_cpp`**: the whole planner in C++17 on Eigen and the MuJoCo C
+  API, with no ROS and no simulator in it. QP solver, kinematics, view grid, motion
+  layer, guard, perception and the B0/B4 task layers, the same constants and the same
+  order of operations as the Python. `sightline_ros_cpp` is the planner node and the
+  topic contract; `stage1.launch.py planner:=cpp` runs it in place of the Python one.
+- **The known world came back flat at the near plane, every pixel, every frame.**
+  MuJoCo's own renderer sets `mjrContext.readDepthMap = mjDEPTH_ZEROFAR` right after
+  `mjr_setBuffer`, and the depth it hands back is undone with the reversed
+  coefficients. Left at the default `mjDEPTH_ZERONEAR` the buffer is a standard depth
+  map, the reversed coefficients map all of it to `znear`, and nothing reads as
+  further away than 12 mm. Checked against the Python renderer on the same model and
+  camera: 2.3240 m nearest, the same 303066 pixels past the far plane.
+- **The same render saw nothing on `EGL_DEFAULT_DISPLAY`.** On a machine with two
+  graphics devices the default display initialises and renders an empty scene.
+  MuJoCo's headless renderer goes through `eglQueryDevicesEXT` and
+  `eglGetPlatformDisplayEXT` and leaves the context surfaceless, and
+  `MUJOCO_EGL_DEVICE_ID` picks the device. The C++ `KnownWorld` now does the same, and
+  refuses to start if `mjr_setBuffer` did not give it an offscreen framebuffer.
+- **`spec.to_xml()` refused the robot-only model: "no support for buffer textures".**
+  `station.export_robot_mjcf`, which writes the model the C++ planner loads, builds it
+  with an assets directory so every texture goes to a PNG file, the way `export_mjcf`
+  already did for the whole cell. Unlike `export_mjcf` it leaves the slashes in names
+  alone: the planner looks its bodies up as `ur5e/shoulder_link`.
+- **Checked against the Python on the way:** the C++ guard puts the same 63 points on
+  the arm, 58 of them moving and 8 rooted on the base's axis, with the same 4.009591 m
+  of radii; forward kinematics, the wrist camera pose and the Jacobian norm agree to
+  four decimals; and the exported model has the same bodies, sites, cameras, mocap
+  parts, collision shapes, joint limits and field of view as `robot_only_model`. The
+  solver and the geometry helpers have gtest cases in `sightline_planner_cpp/test`.
+
 ## 2026-09-19
 
 ### Stage 1, the planner live on ROS 2
