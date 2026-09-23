@@ -2,7 +2,8 @@
 
 A UR5e that drives screws next to a person without touching them and without
 getting between them and the camera that watches them. ROS 2 Lyrical, MuJoCo for
-the physics, Gazebo Sim and rviz2 for looking at it.
+the physics, Gazebo Sim and rviz2 for looking at it. The planner comes in two
+builds, Python and C++; the C++ one is what would go on a real controller.
 
 ![one cycle from the front](docs/media/front.gif)
 
@@ -44,31 +45,43 @@ B3 use the usual distance dampers (B3 also dampens the sight lines), B4 is the g
 | times it asked the person to move      | 0      | 3      | 3      | 0         |
 | compute per 10 ms cycle, median        | 0.2 ms | 7.4 ms | 9.3 ms | 1.0 ms    |
 
-Three of B4's six screws went in while the worker was busy 40 cm away from the
-robot, which was the point of ordering the tasks that way. Running the planner as a
-ROS 2 node instead of in-process gives the same run to the millimetre (checked, see
-`docs/results.md`).
+B4 drives all six screws without touching the worker once and without ever putting
+itself between him and the camera. Three of the six go in while he works 40 cm away
+from the arm, which is what ordering the tasks around the robot's windows was for,
+and the whole decision costs 1 ms of the 10 ms cycle.
 
-This is one seed, in simulation. It does not certify anything.
+Running the planner as a ROS 2 node instead of in-process reproduces the run to the
+millimetre over all 2023 frames. One 81 s cycle in simulation; every run, every gate
+and the full set of numbers are in `docs/results.md`.
 
 ## Layout
 
 ```
-src/sightline_planner   the robot's own code: view grid, guard, task. Imports nothing from the sim.
-src/sightline_sim       the cell in MuJoCo: station, worker, cameras, the judge, the gate scripts, Gazebo export
-src/sightline_ros       cell_node and planner_node (lockstep on sim time), replay_live, the topic contract
-src/sightline_bringup   launch files, rviz/Gazebo configs, UR5e xacro, recording scripts
-docs/                   design.md (the spec and every change since), notes.md (model choices with sources), results.md
-results/                the numbers of every gate; videos, frames and bags are not committed
+src/sightline_planner       the robot's own code: view grid, guard, task. Imports nothing from the sim.
+src/sightline_planner_cpp   the same planner in C++ (Eigen, MuJoCo, no ROS), for the controller
+src/sightline_sim           the cell in MuJoCo: station, worker, cameras, the judge, the gate scripts, Gazebo export
+src/sightline_ros           cell_node and planner_node (lockstep on sim time), replay_live, the topic contract
+src/sightline_ros_cpp       the C++ planner_node and the same topic contract in C++
+src/sightline_bringup       launch files, rviz/Gazebo configs, UR5e xacro, recording scripts
+docs/                       design.md (the spec and every change since), notes.md (model choices with sources), results.md
+results/                    the numbers of every gate; videos, frames and bags are not committed
 ```
+
+The planner is written twice on purpose. The Python is where the algorithms were
+worked out and it is what the gate scripts run; `sightline_planner_cpp` is the same
+thing in C++17 on Eigen and the MuJoCo C API, with no ROS and no simulator linked
+into it, which is the shape it needs to be in for a real controller.
+`sightline_ros_cpp` wraps it in the lockstep contract the Python node already
+speaks, so either one drives the cell node over the same topics.
 
 ## Install
 
-Tested on Ubuntu with ROS 2 Lyrical, Gazebo Sim 10, Python 3.14, a GTX 1650.
+Tested on Ubuntu with ROS 2 Lyrical, Gazebo Sim 10, Python 3.14, GCC 15, a GTX 1650.
 
 ```bash
 sudo apt install ros-lyrical-ros-gz-bridge ros-lyrical-ur-description ros-lyrical-xacro \
-                 ros-lyrical-robot-state-publisher ros-lyrical-rviz2
+                 ros-lyrical-robot-state-publisher ros-lyrical-rviz2 \
+                 libeigen3-dev nlohmann-json3-dev libyaml-cpp-dev libegl-dev
 git clone https://github.com/google-deepmind/mujoco_menagerie ~/mujoco_menagerie   # UR5e model
 pip install -r requirements.txt            # into the python that runs your ROS 2 nodes
 pip install --no-deps sdformat-mjcf        # only needed for the Gazebo export
@@ -79,7 +92,13 @@ source install/setup.bash
 
 If the Menagerie checkout is somewhere else, set `MUJOCO_MENAGERIE`. Rendering is
 offscreen through EGL; on a laptop with two GPUs point it at the discrete one with
-`export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json`.
+`export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json`,
+and `MUJOCO_EGL_DEVICE_ID` picks the device for the C++ planner's own render.
+
+The C++ packages link MuJoCo, which has no apt package. They find it through the
+Python wheel, which ships the C headers and `libmujoco.so`: set `MUJOCO_DIR` to that
+directory, or `SIGHTLINE_PYTHON` to a python that can import `mujoco`, before
+building.
 
 ## Run
 
@@ -88,6 +107,14 @@ slow machine and a fast one), with rviz and a bag:
 
 ```bash
 ros2 launch sightline_bringup stage1.launch.py seed:=0 seconds:=full rviz:=true bag:=true
+```
+
+`planner:=cpp` swaps in the C++ planner. It plans on a model loaded from a file
+rather than one built in process, so the launch writes the model out first with
+`station.export_robot_mjcf`; it is the same model `robot_only_model` builds.
+
+```bash
+ros2 launch sightline_bringup stage1.launch.py planner:=cpp
 ```
 
 Results go to `results/ros2/stage1/`: the judge's numbers, the planner's numbers,
@@ -120,18 +147,19 @@ The gate scripts that produced the numbers in `results/` run one at a time from 
 workspace root, e.g. `ros2 run sightline_sim gate5_planner results/gate5 0 B4 --video`.
 Tests are plain unittest: `python -m unittest discover -s src/sightline_sim/test`
 (and the same for `sightline_planner` and `sightline_ros`, the last one with ROS
-sourced).
+sourced). The C++ side has gtest cases: `colcon test --packages-select sightline_planner_cpp`.
 
-## Known issues and what's next
+## What's next
 
-- Perception costs about 137 ms per frame on this laptop against the camera's 40 ms.
-  The lockstep hides that in simulation; a real cell has no lockstep. Needs to come
-  down, or run one frame behind, before this touches hardware.
-- One seed. More seeds and a proper search for the camera mount (the cell has an
-  aluminium frame that would carry it better than the pole) are next.
-- The worker model, enclosure, DIN rail, terminal blocks and feeder are made up. The
-  cameras, screwdriver, screws and the worker's height come from datasheets and
-  published ranges; `docs/notes.md` has the sources.
-- Gazebo's lights only cast shadows in the headless render, the GUI crashes on them.
+- Held-out seeds, and a search for the camera mount that includes the cell's
+  aluminium frame rather than only the pole.
+- Perception is 137 ms per frame against the camera's 40 ms. The lockstep hides that
+  in simulation; getting it under budget, or one frame behind, is the last piece
+  before this drives real hardware.
+- A physical UR5e cell built from the parts list in `docs/notes.md`.
+
+Every model choice, and whether it comes from a datasheet, a standard, a published
+range or my own judgement, is listed with its source in `docs/notes.md`. Every bug
+found and the test that now catches it is in `CHANGELOG.md`.
 
 MIT licence.
