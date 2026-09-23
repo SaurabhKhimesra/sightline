@@ -14,6 +14,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 find_package(ament_cmake REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(MuJoCo REQUIRED)
+# the known world is rendered offscreen, so MuJoCo needs a GL context of its own
+find_package(OpenGL REQUIRED COMPONENTS EGL)
 
 add_library(${PROJECT_NAME} SHARED
   src/calibration.cpp
@@ -21,12 +23,14 @@ add_library(${PROJECT_NAME} SHARED
   src/kin.cpp
   src/viewgrid.cpp
   src/motion.cpp
-  src/guard.cpp)
+  src/guard.cpp
+  src/perceive.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:include>")
 target_link_libraries(${PROJECT_NAME} PUBLIC Eigen3::Eigen MuJoCo::mujoco)
+target_link_libraries(${PROJECT_NAME} PRIVATE OpenGL::EGL)
 
 # libmujoco.so lives in the wheel, not on the loader's path
 set_target_properties(${PROJECT_NAME} PROPERTIES
