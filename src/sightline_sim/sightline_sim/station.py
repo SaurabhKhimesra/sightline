@@ -1165,3 +1165,50 @@ def export_mjcf(out_dir, layout: Layout | None = None) -> Path:
     path.write_text(xml)
     return path
 
+
+def export_robot_mjcf(out_dir, layout: Layout | None = None, with_workpiece: bool = True) -> Path:
+    """Save the robot-only model as one MJCF file with its meshes beside it.
+
+    This is what robot_only_model() builds, written out so the C++ planner
+    (sightline_planner_cpp) loads the same model the Python one holds. Names keep
+    their slashes, unlike export_mjcf: the planner looks bodies up by the names it
+    was taught, "ur5e/shoulder_link" and the rest. Returns the path of the XML.
+    """
+    import re
+    import shutil
+    out = Path(out_dir)
+    assets = out / "assets"
+    assets.mkdir(parents=True, exist_ok=True)
+    L = layout or Layout()
+    spec = mujoco.MjSpec()
+    spec.option.timestep = 0.002
+    set_visual(spec)
+    # the textures go to files: a buffer texture cannot be written into an MJCF
+    b = Builder(spec, assets)
+    add_materials(b)
+    zw = _worktop_for(L)
+    build_robot(b, L, zw)
+    if with_workpiece:
+        _workpiece_shapes(b, L)
+    spec.compile()                      # names and defaults settle on the first compile
+    xml = spec.to_xml()
+    # every file the model refers to ends up in the assets folder under its own name,
+    # and one compiler meshdir covers both our own and the Menagerie's
+    menagerie = MENAGERIE / "universal_robots_ur5e" / "assets"
+    def relocate(match):
+        ref = Path(match.group(1))
+        src = ref if ref.is_absolute() else menagerie / ref.name
+        dst = assets / ref.name
+        if src.exists() and src.resolve() != dst.resolve():
+            shutil.copy(src, dst)
+        return f'file="{ref.name}"'
+    xml = re.sub(r'file="([^"]+)"', relocate, xml)
+    compiler = f'<compiler meshdir="{assets.resolve()}" texturedir="{assets.resolve()}"'
+    if "<compiler" in xml:
+        xml = xml.replace("<compiler", compiler, 1)
+    else:
+        xml = xml.replace(">", ">\n  " + compiler + "/>", 1)
+    path = out / "robot_only.xml"
+    path.write_text(xml)
+    return path
+
